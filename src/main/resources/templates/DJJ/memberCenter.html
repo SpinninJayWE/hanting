@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>会员中心_韩汀社区</title>
+<link href="../css/common.css" rel="stylesheet"><!--该页面的所有css-->
+<script type="text/javascript" src="../js/jquery-1.8.3.js" ></script><!--js 1.8.3-->
+<body>
+<!--头部-->
+<div class="header" id="botop">
+	<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav">
+				<a href="javascript:void(0);">首页</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">商家入驻</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">帮助中心</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">关于韩汀</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">联系我们</a></div>
+			
+			<div class="top_right login_right">
+				<a href="javascript:void(0);">[[${session.USER.uesr.username}]]</a>
+				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
+            	<span class="ht_line"></span><a href="javascript:void(0);"><img src="../images/e_i.png" alt=""></a>
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="javascript:void(0);">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li id="li1"><a href="javascript:void(0);">商家中心</a><span class="my_nav_i"></span></li>
+        	<li class="cur" id="li2"><a href="javascript:void(0);">个人中心</a><span class="my_nav_i"></span></li>
+            <li id="li3"><a href="javascript:void(0);">账户设置</a><span class="my_nav_i"></span></li>
+            <li id="li4"><a href="javascript:void(0);">消息</a><span class="my_nav_i"></span></li>
+        </ul>
+	</div>
+</div>
+<!--头部结束-->
+
+<a href="javascript:void(0);" class="zy_box">预定流程指引</a>
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	<!--内容 左边-->
+        <div class="member_left">
+        	<h1 class="member_left_title"><a th:href="@{/c/Gerenzx}">个人中心</a></h1>
+            <ul class="member_system_ul">
+            	<li><a th:href="@{/c/getAllMyOrders?num=1&size=3}"><span class="msp2 pre_c1"></span>我预订的服务</a></li>
+            	<li><a href="wodexiazai.html"><span class="msp2 pre_c2"></span>我的下载</a></li>
+                <li><a href="javascript:void(0);"><span class="msp2 community_sp csp7"></span>我的帖子</a></li>
+                <li><a th:href="@{/c/getAllMyServiceCollection?num=1&size=3}"><span class="msp2 pre_c3"></span>我的收藏</a></li>
+                <li><a href="javascript:void(0);"><span class="msp2 pre_c4"></span>我的金币</a></li>
+                <li><a th:href="@{/c/getAllMyJifenRecord?num=1&size=3}"><span class="msp2 pre_c5"></span>我的积分</a></li>
+                <li><a href="wodepingjia.html"><span class="msp2 pre_c6"></span>我的评价</a></li>
+                <li><a href="wodetuikuan.html"><span class="msp2 pre_c7"></span>我的退款</a></li>
+				<li><a href="wodewuliu.html"><span class="msp2 pre_c8"></span>我的物流</a></li>                
+				<li><a target="_blank" href="javascript:void(0);"><span class="msp2 pre_c9"></span>帮助中心</a></li>
+            </ul>
+        </div>
+        <!--内容 左边 结束-->
+        
+        <!--内容 右边-->
+        <div class="member_right site_msg_w">
+        	<dl class="pre_udl">
+            	<dt><img src="../images/20170430042114-13691.jpg" th:alt="${session.USER.uesr.username}"></dt>
+                <dd>
+                	<div class="pre_c_name">[[${session.USER.uesr.username}]]<a href="javascript:void(0);" class="edit_a">更改资料</a></div>
+                    <ul class="pre_uul">
+                    	<li><span class="prus psi1">积分</span><span id="jifen" th:text="${session.USER.uesr.userintegral}"></span></li>
+                        <li><span class="prus psi2">金币</span>[[${session.USER.uesr.usermoney}]]</li>
+                    </ul>
+                    <a href="javascript:void(0);" class="qdao"><span class="qm_i"></span><span class="qiandao">签到送积分</span></a>                    
+                </dd>
+            </dl>
+            <ul class="pre_about_info">
+            	<li><a href="javascript:void(0);">待付款<span class="pre_asp">0</span></a></li>
+                <li><a href="javascript:void(0);">商家接单<span class="pre_asp">0</span></a></li>
+                <li><a href="javascript:void(0);">待确认<span class="pre_asp">0</span></a></li>
+                <li class="last"><a href="javascript:void(0);">待评价<span class="pre_asp">0</span></a></li>
+            </ul>
+            <h2 class="pre_h2_title">最新预订了</h2>
+            <ul class="you_yd_news">
+            	<li th:each="temp,iterState :${services}">
+                	<div class="you_yd_img"><img src="../images/20180113013907-60472.jpg" width="135" height="90" alt="学习资料"></div>
+                    <a href="index.html" class="btn_a_yyd">查看详细</a>
+                    <div class="you_yd_text">
+                    	<div class="yd_xm_title" th:text="${temp.servicetitle}">学习资料</div>
+                        <p th:text="${temp.serviceprice}">学习资料</p>
+                        <p><span class="num_1" th:text="${temp.serviceprice}">222.0</span></p>
+                        <p>                                							1人</p>
+                    </div>
+                </li>
+                        </ul>
+
+        </div>
+        <!--内容 右边 结束-->
+        
+        <!--空行用的div-->
+        <div class="clear"></div>
+        
+        <!--图片广告-->
+		<div class="ad_box2">
+			<a href="javascript:void(0);"><img src="./images/20180414123932-28064.jpg" alt="底部广告 说吧"></a>	
+		</div>
+		<!--广告 结束-->
+	</div>
+</div>
+
+<!--加入我们-->
+<div class="b_box">	
+	<a href="javascript:void(0);" class="footer_text">
+	<h2 class="index_h2_title c_0">加入我们<span class="c_1">•</span>招募韩国商家、华人</h2>
+	<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+	<div class="bt_btn_d"><span class="btn_a_more bs_bt_a">商家入驻</span></div>
+	</a>
+</div>
+<!--商家入驻 结束-->
+
+<!--底部-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="./images/footer_ewm.png" alt=""></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink">
+				<a href="javascript:void(0);">商家入驻</a>|<a href="javascript:void(0);">帮助中心</a>|<a href="javascript:void(0);">人才招聘</a>|
+				<a href="javascript:void(0);">联系我们</a>|<a href="javascript:void(0);">网站地图</a>|<a href="javascript:void(0);">使用条款</a>
+			</p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+			<p>Copyright © 钟大佬 版权所有</p>		
+		</dd>
+	</dl>
+</div>
+<!--底部 结束-->
+
+<!--右侧 nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a></li>
+	<li><a href="javascript:void(0);" class="rn_kf">在线客服</a></li>
+</ul>
+<!--右侧 nav 结束-->
+
+<div class="qdao_pop">
+	签到成功！<br>您已获得10积分
+</div>
+<!--签到 弹框 end-->
+<div class="qdao_pop2">
+	今天已经签到过啦！
+</div>
+
+</body>
+<script type="text/javascript">
+		$(function(){
+			$.getJSON("/c/getMyJifenRecord",function(datas){
+				if(datas.code==501){
+					$(".qiandao").html("已签到");
+				}
+			});
+			
+			
+			$(".qdao").click(function(){
+				
+				
+				$.getJSON("/c/getMyJifenRecord",function(datas){
+					if(datas.code==200){
+						$.getJSON("/c/getJifenGuige?inteid="+1,function(data){
+							$.ajax("/c/addJifen?interade="+data.integral+"&qdaoguige="+data.integralName,{
+								type:"post",
+								contentType:"application/json",
+								dataType:"json",
+								success:function(json){
+									if(json.code==200){
+										$('.qdao_pop').fadeIn().delay(3000).fadeOut();
+										$("#jifen").html(json.jifen);
+									}else{
+										alert("签到失败");
+									}
+								}
+								
+							});
+						});
+					}else{
+						alert("今天已经签到过啦！");
+						
+					}
+					
+				});
+				
+				
+				
+				
+				
+			});
+			
+			
+		});
+</script>
+</html>

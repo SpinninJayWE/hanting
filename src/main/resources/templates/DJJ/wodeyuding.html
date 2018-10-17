@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>我预定的服务_韩汀社区</title>
+<link href="../css/common.css" rel="stylesheet"><!--该页面的所有css-->
+<script type="text/javascript" src="../js/jquery-1.8.3.js" ></script><!--js 1.8.3-->
+<body>
+<!--头部-->
+<div class="header" id="botop">
+	<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav">
+				<a href="javascript:void(0);">首页</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">商家入驻</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">帮助中心</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">关于韩汀</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">联系我们</a></div>
+			
+			<div class="top_right login_right">
+				<a th:href="@{/c/Gerenzx}">[[${session.USER.uesr.username}]]</a>
+				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
+            	<span class="ht_line"></span><a href="javascript:void(0);"><img src="../images/e_i.png" alt=""></a>
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="javascript:void(0);">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li id="li1"><a href="javascript:void(0);">商家中心</a><span class="my_nav_i"></span></li>
+        	<li class="cur" id="li2"><a href="javascript:void(0);">个人中心</a><span class="my_nav_i"></span></li>
+            <li id="li3"><a href="javascript:void(0);">账户设置</a><span class="my_nav_i"></span></li>
+            <li id="li4"><a href="javascript:void(0);">消息</a><span class="my_nav_i"></span></li>
+        </ul>
+	</div>
+</div>
+<!--头部结束-->
+
+<a href="javascript:void(0);" class="zy_box">预定流程指引</a>
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	<!--内容 左边-->
+        <div class="member_left">
+        	<h1 class="member_left_title">个人中心</h1>
+           <ul class="member_system_ul">
+            	<li><a href="javascript:void(0)"><span class="msp2 pre_c1"></span>我预订的服务</a></li>
+            	<li><a href="wodexiazai.html"><span class="msp2 pre_c2"></span>我的下载</a></li>
+                <li><a href="javascript:void(0);"><span class="msp2 community_sp csp7"></span>我的帖子</a></li>
+                <li><a th:href="@{/c/getAllMyServiceCollection?num=1&size=3}"><span class="msp2 pre_c3"></span>我的收藏</a></li>
+                <li><a href="wodejinbi.html"><span class="msp2 pre_c4"></span>我的金币</a></li>
+                <li><a th:href="@{/c/getAllMyJifenRecord?num=1&size=3}"><span class="msp2 pre_c5"></span>我的积分</a></li>
+                <li><a href="wodepingjia.html"><span class="msp2 pre_c6"></span>我的评价</a></li>
+                <li><a href="wodetuikuan.html"><span class="msp2 pre_c7"></span>我的退款</a></li>
+				<li><a href="wodewuliu.html"><span class="msp2 pre_c8"></span>我的物流</a></li>                
+				<li><a target="_blank" href="javascript:void(0);"><span class="msp2 pre_c9"></span>帮助中心</a></li>
+            </ul>
+        </div>
+        <!--内容 左边 结束-->
+        <!--member right-->
+        <div class="member_right site_msg_w">
+        	<div class="member_system_r_top">
+				<div class="search_right_box">
+					<div class="search_sec">
+					<form method="post">
+					<input type="text" name="orderkey" placeholder="输入下单服务标题或订单号进行搜索" class="s_sec_input"><input type="button" value="" class="s_sec_btn">
+					<input type="hidden" name="__hash__" value="00fa15972c8b485f5256fc2f04ee102f_699aa1a27238f00488e704a91652d4f3"></form>
+					</div>
+				</div>
+				我预订的服务
+			</div>
+            <ul class="pre_about_info yd_list_2">
+				<li id="zt0" class="cur"><a href="http://yphting.zglxkj.com/index.php/Home/Member/order.html">所有预订</a></li>
+            	<li id="zt1"><a href="javascript:void(0)" state="1">待付款<span class="pre_asp" th:text="${orderstate.daif}">5</span></a></li>
+                <li id="zt3"><a href="javascript:void(0)" state="2">商家接单<span class="pre_asp" th:text="${orderstate.daij}">1</span></a></li>
+                <li id="zt5"><a href="javascript:void(0)" state="3">待确认<span class="pre_asp" th:text="${orderstate.daiq}">0</span></a></li>
+                <li class="last" id="zt7"><a href="javascript:void(0)" state="4">待评价<span class="pre_asp" th:text="${orderstate.daip}">0</span></a></li>
+            </ul>
+			<!--booking_list-->
+            <div class="booking_list " th:each="temp,iterState :${ordersvo.list}">
+                <div class="book_top" >
+                    <ul class="book_top_ul">
+                        <li>
+                            <div class="c_4">下单日期</div>
+                            <p th:text="${temp.orderTime}">2018-10-05</p>
+                        </li>
+                        <li>
+                            <div class="c_4">总金币</div>
+                            <span class="num_1" th:text="${temp.servicePrice}">222.0</span>
+                        </li>
+						<li>
+                            <div class="c_4">服务类别</div>
+                            <span th:text="${temp.stName}">英语资料</span>
+                        </li>
+                        <li>
+                            <div class="c_4">商家</div>
+                            <p class="shopname" th:text="${temp.shopName}" rel="http://thirdqq.qlogo.cn/qqapp/101390132/3CF65B37D7E025A8C9CD7B5E1FC1A36E/100">研发3部</p>
+                        </li>
+                        <li>
+                            <div class="c_4" style="text-align:center;">商家状态</div>
+                            <span th:switch="${temp.businessState}" style="text-align:center;margin-left:42px;color:#959595;">
+                            	<span th:case="0">营业中</span>
+                            	<span th:case="1">未开业</span>
+                            </span>
+                        </li>
+                        <li class="last" style="width:200px;">
+                            <div class="yy_code"><span class="c_4">预订编号</span><span th:text="${temp.orderID}">15374327157820</span></div>
+							<p>
+							<a href="http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100490.html">查看详细</a>							<span class="ht_line2"></span>
+								<a href="javascript:;" onclick="showmsg(this)" rel="275">站内信商家</a>							</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="book_bt">
+                	<ul class="book_bt_ul">
+                    	<li class="cel_l1"><img width="135" height="90" th:src="|../images/${temp.serviceCoverImg}|" alt=""></li>
+                        <li class="cel_l2">
+                            <div class="yd_xm_title"><a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/566.html" target="_blank" th:text="${temp.serviceTitle}">学习资料</a></div>
+                            <p th:text="${temp.serviceFuTitle}">学习资料</p>                            <p>
+							<span class="num_1 num_1_s" th:text="${temp.servicePrice}">222.0</span>							</p>
+                        </li>
+                        <li class="cel_l3">
+						&nbsp;						
+						</li>
+                        <li class="cel_l4" th:switch="${temp.orderStatus}">
+						<span th:case="1">待付款</span>
+						<span th:case="2">待接单</span>	
+						<span th:case="3">待确定</span>	
+						<span th:case="4">待评价</span>
+						<span th:case="5">完成</span>
+						<span th:case="6">已取消</span>						
+						</li>
+						<li class="cel_l5" th:switch="${temp.orderStatus}">
+						<span th:case="1">
+ 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">支付金币</a><br><a href="javascript:;" th:onclick="|quxiao(${temp.orderID})|">取消服务</a><br>
+ 						</span>
+ 						<span th:case="2">
+ 						<span style="color:#FF8C00;font-weight: bold;">等待商家接单</span>
+ 						</span>
+ 						<span th:case="3">
+ 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">确认收货</a>
+ 						</span>
+ 						<span th:case="4">
+ 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">评价</a>
+ 						</span>
+ 						<span th:case="5">
+ 						<span style="color: green;">订单已完成</span>
+ 						</span>
+ 						<span th:case="6">
+ 						<span style="color: red;">订单已取消</span>
+ 						</span>
+ 						</li>
+                    </ul>
+                </div>
+                <div class="book_top" style="padding:8px;">
+                    <ul class="book_top_ul">
+                        <li class="last" style="width:350px;">
+                            <div class="yy_code"><span class="c_4"></span>
+                                                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+                        <!--booking_list end--><!--booking_list-->
+<!--             <div class="booking_list " style="background: gray;"> -->
+<!--                 <div class="book_top"> -->
+<!--                     <ul class="book_top_ul"> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">静态数据</div> -->
+<!--                             <p>2018-09-20</p> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">总金币</div> -->
+<!--                             <span class="num_1">222.0</span> -->
+<!--                         </li> -->
+<!-- 						<li> -->
+<!--                             <div class="c_4">服务类别</div> -->
+<!--                             <span>英语资料</span> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">商家</div> -->
+<!--                             <p class="shopname" rel="http://thirdqq.qlogo.cn/qqapp/101390132/3CF65B37D7E025A8C9CD7B5E1FC1A36E/100">研发3部</p> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4" style="text-align:center;">商家状态</div> -->
+<!--                             <span style="text-align:center;margin-left:42px;color:#959595;">营业中</span> -->
+<!--                         </li> -->
+<!--                         <li class="last" style="width:200px;"> -->
+<!--                             <div class="yy_code"><span class="c_4">预订编号</span>15374327157820/div> -->
+<!-- 							<p> -->
+<!-- 							<a href="http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100484.html">查看详细</a>							<span class="ht_line2"></span> -->
+<!-- 								<a href="javascript:;" onclick="showmsg(this)" rel="275">站内信商家</a>							</p> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="book_bt"> -->
+<!--                 	<ul class="book_bt_ul"> -->
+<!--                     	<li class="cel_l1"><img width="135" height="90" src="./我预订的服务_韩汀社区_files/20180920110531-38833.jpg" alt=""></li> -->
+<!--                         <li class="cel_l2"> -->
+<!--                             <div class="yd_xm_title"><a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/566.html" target="_blank">学习资料</a></div> -->
+<!--                             <p>学习资料</p>                            <p> -->
+<!-- 							<span class="num_1 num_1_s">222.0</span>							</p> -->
+<!--                         </li> -->
+<!--                         <li class="cel_l3"> -->
+<!-- 						&nbsp;						 -->
+<!-- 						</li> -->
+<!--                         <li class="cel_l4"> -->
+<!-- 						待服务						</li> -->
+<!-- 						<li class="cel_l5"> -->
+<!-- 						-						</li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="book_top" style="padding:8px;"> -->
+<!--                     <ul class="book_top_ul"> -->
+<!--                         <li class="last" style="width:350px;"> -->
+<!--                             <div class="yy_code"><span class="c_4"></span> -->
+<!--                                                             </div> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--             </div> -->
+                        <!--booking_list end--><!--booking_list-->
+<!--             <div class="booking_list " style="background: gray;"> -->
+<!--                 <div class="book_top"> -->
+<!--                     <ul class="book_top_ul"> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">静态数据</div> -->
+<!--                             <p>2018-09-20</p> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">总金币</div> -->
+<!--                             <span class="num_1">222.0</span> -->
+<!--                         </li> -->
+<!-- 						<li> -->
+<!--                             <div class="c_4">服务类别</div> -->
+<!--                             <span>英语资料</span> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">商家</div> -->
+<!--                             <p class="shopname" rel="http://thirdqq.qlogo.cn/qqapp/101390132/3CF65B37D7E025A8C9CD7B5E1FC1A36E/100">研发3部</p> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4" style="text-align:center;">商家状态</div> -->
+<!--                             <span style="text-align:center;margin-left:42px;color:#959595;">营业中</span> -->
+<!--                         </li> -->
+<!--                         <li class="last" style="width:200px;"> -->
+<!--                             <div class="yy_code"><span class="c_4">预订编号</span>15374284917287</div> -->
+<!-- 							<p> -->
+<!-- 							<a href="http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100482.html">查看详细</a>							<span class="ht_line2"></span> -->
+<!-- 								<a href="javascript:;" onclick="showmsg(this)" rel="275">站内信商家</a>							</p> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="book_bt"> -->
+<!--                 	<ul class="book_bt_ul"> -->
+<!--                     	<li class="cel_l1"><img width="135" height="90" src="./我预订的服务_韩汀社区_files/20180920110531-38833.jpg" alt=""></li> -->
+<!--                         <li class="cel_l2"> -->
+<!--                             <div class="yd_xm_title"><a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/566.html" target="_blank">学习资料</a></div> -->
+<!--                             <p>学习资料</p>                            <p> -->
+<!-- 							<span class="num_1 num_1_s">222.0</span>							</p> -->
+<!--                         </li> -->
+<!--                         <li class="cel_l3"> -->
+<!-- 						&nbsp;						 -->
+<!-- 						</li> -->
+<!--                         <li class="cel_l4"> -->
+<!-- 						用户已评						</li> -->
+<!-- 						<li class="cel_l5"> -->
+<!-- 						<span class="c_4">已评价</span><br>						</li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="book_top" style="padding:8px;"> -->
+<!--                     <ul class="book_top_ul"> -->
+<!--                         <li class="last" style="width:350px;"> -->
+<!--                             <div class="yy_code"><span class="c_4"></span> -->
+<!--                                                             </div> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--                         booking_list end--><!--booking_list -->
+<!--             <div class="booking_list " style="background: gray;"> -->
+<!--                 <div class="book_top"> -->
+<!--                     <ul class="book_top_ul"> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">静态数据</div> -->
+<!--                             <p>2018-08-30</p> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">总金币</div> -->
+<!--                             <span class="num_1">18.0</span> -->
+<!--                         </li> -->
+<!-- 						<li> -->
+<!--                             <div class="c_4">服务类别</div> -->
+<!--                             <span>微整形</span> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4">商家</div> -->
+<!--                             <p class="shopname" rel="/Uploads/image/2017-04/20170430042114-13691.jpg">■ˉ苏〃筱萌◇◆ </p> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <div class="c_4" style="text-align:center;">商家状态</div> -->
+<!--                             <span style="text-align:center;margin-left:42px;color:#959595;">营业中</span> -->
+<!--                         </li> -->
+<!--                         <li class="last" style="width:200px;"> -->
+<!--                             <div class="yy_code"><span class="c_4">预订编号</span>15356148076106</div> -->
+<!-- 							<p> -->
+<!-- 							<a href="http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100451.html">查看详细</a>														</p> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="book_bt"> -->
+<!--                 	<ul class="book_bt_ul"> -->
+<!--                     	<li class="cel_l1"><img width="135" height="90" src="./我预订的服务_韩汀社区_files/20170612124834-26284.jpg" alt=""></li> -->
+<!--                         <li class="cel_l2"> -->
+<!--                             <div class="yd_xm_title"><a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/401.html" target="_blank">时蕴整形外科</a></div> -->
+<!--                             <p>时蕴整形外科</p>                            <p> -->
+<!-- 							<span class="num_1 num_1_s">18.0</span>							</p> -->
+<!--                         </li> -->
+<!--                         <li class="cel_l3"> -->
+<!-- 						2018-08-30<br>1人&nbsp;						 -->
+<!-- 						</li> -->
+<!--                         <li class="cel_l4"> -->
+<!-- 						待付款						</li> -->
+<!-- 						<li class="cel_l5"> -->
+<!-- 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">支付金币</a><br><a href="javascript:;" onclick="showConfirm(&#39;确定要取消服务吗？&#39;,&#39;ordercancel(100451);&#39;)">取消服务</a><br>						</li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--                 <div class="book_top" style="padding:8px;"> -->
+<!--                     <ul class="book_top_ul"> -->
+<!--                         <li class="last" style="width:350px;"> -->
+<!--                             <div class="yy_code"><span class="c_4"></span> -->
+<!--                                                             </div> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+<!--             </div> -->
+        
+                        <!--booking_list end-->            
+            <!--page-->
+            <div class="page">
+                <div class="nav"><a class="page_prev prevdisabled"  th:if="${ordersvo.isHasPreviousPage()}"
+				th:href="@{getAllMyOrders?(num=${pageNum=${ordersvo.prePage},size=${ordersvo.pageSize})}">上一页</a> 
+				<span class="cur" th:text="${ordersvo.pageNum}">1</span> 
+				<a class="page_next nextdisabled" th:if="${ordersvo.isHasNextPage()}"
+				th:href="@{getAllMyOrders?(num=${ordersvo.nextPage},size=${ordersvo.pageSize})}">下一页</a></div>
+				</div>
+            <!--page end-->
+
+        </div>
+        <!--member right end-->
+        <div class="clear"></div>
+        
+	</div>
+</div>
+
+<!--站内信 弹框-->
+<!--站内信 弹框-->
+<div id="pop_bg"></div>
+<div class="site_email_pop">
+	<a href="javascript:void(0);" class="close_pop_btn"></a>
+	<h2 class="site_h2">与<span class="mlr10"></span>站内信</h2>
+    <dl class="send_site_email">
+    	<dt><img src="./我预订的服务_韩汀社区_files/bbs_user_photo.png" alt="" class="user_photo_site">
+				</dt>
+        <dd>
+			<input type="hidden" id="smsuid" value="">
+        	<textarea class="input_c in_site_text" id="smsmsg"></textarea>
+            <div class="member_bt_btm2"><a href="javascript:void(0);" class="btna_acancel">取消</a><a href="javascript:void(0);" onclick="sendsms()">发送</a></div>
+        </dd>
+    </dl>
+</div>
+<!--站内信 弹框 end-->
+
+<!--底部-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="./images/footer_ewm.png" alt=""></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink">
+				<a href="javascript:void(0);">商家入驻</a>|<a href="javascript:void(0);">帮助中心</a>|<a href="javascript:void(0);">人才招聘</a>|
+				<a href="javascript:void(0);">联系我们</a>|<a href="javascript:void(0);">网站地图</a>|<a href="javascript:void(0);">使用条款</a>
+			</p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+			<p>Copyright © 钟大佬 版权所有</p>		
+		</dd>
+	</dl>
+</div>
+<!--底部 结束-->
+
+<!--右侧 nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a></li>
+	<li><a href="javascript:void(0);" class="rn_kf">在线客服</a></li>
+</ul>
+<!--右侧 nav 结束-->
+
+</body>
+<script type="text/javascript">
+		
+		
+			$(".s_sec_btn").click(function(){
+				var title= $(this).prev().val();
+				location.href="/c/getAllMyOrders?num=1&size=3&title="+title;
+			});
+			
+			function quxiao(oid){
+				if(window.confirm("确定要取消服务吗？")){
+					$.ajax("/c/updateMyOrderState?state="+6+"&oid="+oid,{
+						type:"post",
+						contentType:"application/json",
+						dataType:"json",
+						success:function(json){
+							if(json.code==200){
+								alert("取消成功");
+								window.location.reload();
+							}else{
+								alert("取消失败");
+							
+							}
+							
+						}
+					
+					
+					});
+					
+					
+					
+				}
+				
+			}
+			
+			
+// 			$(".yd_list_2 li a").click(function(){
+// 					var state = $(this).attr("state");
+// 					location.href="/c/getAllMyOrders?num=1&size=5&state="+state;
+				
+// 				});
+		
+</script>
+</html>

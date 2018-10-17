@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>会员中心_韩汀社区</title>
+<link href="../css/common.css" rel="stylesheet"><!--该页面的所有css-->
+<script type="text/javascript" src="../js/jquery-1.8.3.js" ></script><!--js 1.8.3-->
+<body>
+<!--头部-->
+<div class="header" id="botop">
+	<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav">
+				<a href="javascript:void(0);">首页</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">商家入驻</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">帮助中心</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">关于韩汀</a><span class="ht_line"></span>
+				<a href="javascript:void(0);">联系我们</a></div>
+			
+			<div class="top_right login_right">
+				<a th:href="@{/c/Gerenzx}">[[${session.USER.uesr.username}]]</a>
+				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
+            	<span class="ht_line"></span><a href="javascript:void(0);"><img src="/images/e_i.png" alt=""></a>
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="javascript:void(0);">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li id="li1"><a href="javascript:void(0);">商家中心</a><span class="my_nav_i"></span></li>
+        	<li class="cur" id="li2"><a href="javascript:void(0);">个人中心</a><span class="my_nav_i"></span></li>
+            <li id="li3"><a href="javascript:void(0);">账户设置</a><span class="my_nav_i"></span></li>
+            <li id="li4"><a href="javascript:void(0);">消息</a><span class="my_nav_i"></span></li>
+        </ul>
+	</div>
+</div>
+<!--头部结束-->
+<div class="bg_c4 pt2">
+	<div class="b_box">
+    	<div class="collection_top">
+        	<div class="fr">
+				
+                <div class="search_sec"><input type="text" name="findkey" placeholder="输入服务名称或商家名称搜索" class="s_sec_input"><input name="soso" type="submit" value="搜索" class="s_sec_btn"></div>
+				<input type="hidden" name="t" value="1">
+				<input type="hidden" name="catid" value="0">
+				<input type="hidden" name="__hash__" value="90e145dbaf329d18d30c0c450d90c588_fb35b28ad94fd0d4125b19593a3059d6">
+            </div>
+            <div class="collection_tab">
+			<a href="http://yphting.zglxkj.com/index.php/Home/Member/favs/t/1.html" class="cur">服务收藏</a>
+			<a href="javascript:void(0);" onclick="shangjia()">商家收藏</a>
+			</div>
+        </div>
+        <!--collection_box-->
+        <div class="collection_box">
+            <ul class="pre_about_info collection_nav">
+                <li class="cur"><a href="http://yphting.zglxkj.com/index.php/Home/Member/favs/t/1.html">全部</a></li>
+				<li  th:each="temp,iterState : ${ServiceCollt.list}"><a href="#"  th:text="${temp.stName}"><span class="pre_asp">微整形</span></a></li></ul>
+         
+            <ul class="us_ul_list collection_list_ul">
+			
+             <li class="col_418" th:each="temp,iterState : ${ServiceCollt.list}">
+                	<div class="per_pic">
+					<a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/570.html" target="_blank"><img th:src="|../images/${temp.serviceCoverImg}|" alt="研发3"></a>
+					<span class="del_collection" rel="418" style="display: none;"></span></div>
+                    <div class="per_text">
+                    	<a href="javascript:void(0)" target="_blank">
+						
+						<img class="lajit" th:sid="${temp.sercolleid}" src="../images/ljit.png" style="float: right;display: none;">
+						<h3  th:text="${temp.servicetitle}">66666</h3>
+                        <dl class="collection_bt_dl">
+                        	<dt><div class="i_3"  th:text="${temp.servicePrice}">5200</div></dt>
+                            <dd>
+                            	<div class="star_pl"><span class="star_pl_sp" style="width:60%;"></span></div>
+                            </dd>
+                        </dl>
+						</a>
+                    </div>
+                    </li>
+           
+                         </ul>
+            
+            <!--page-->
+            <div class="page">
+                <div class="nav">   
+          
+                 <a class="page_prev prevdisabled" th:if="${ServiceCollt.isHasPreviousPage()}"
+				th:href="@{getAllMyServiceCollection?(num=${pageNum=${ServiceCollt.prePage},size=${ServiceCollt.pageSize})}">上一页</a>
+				&nbsp;&nbsp;    <span class="cur" th:text="${ServiceCollt.PageNum}"></span>
+				<a  class="page_next nextdisabled" th:if="${ServiceCollt.isHasNextPage()}"
+				th:href="@{getAllMyServiceCollection?(num=${ServiceCollt.nextPage},size=${ServiceCollt.pageSize})}">下一页</a>
+                 </div>     </div>
+            <!--page end-->
+            
+            <div class="service_recs">服务推荐</div>
+            <div id="service_recs" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 6000px; left: 0px; display: block;"><div class="owl-item" style="width: 300px;"><div class="item">
+                	<ul class="us_ul_list">
+                        <li>
+                            <a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/552.html" target="_blank">
+                            <div class="per_pic"><img src="/images/100.jpg" alt="爱爱爱"></div>
+                            <div class="per_text">
+                                <h3>爱爱爱</h3>
+                                <dl class="star_user_dl fl">
+                                    <dt><img src="/images/100.jpg" alt="校园资源共享" class="star_user_photo"></dt>
+                                    <dd>
+                                        <div class="star_user_name_s"><h3 class="star_user_name">校园资源共享</h3></div>
+                                    </dd>
+                                </dl>
+                                <div class="fr i_3">12</div>
+                                <div class="clear"></div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div></div><div class="owl-item" style="width: 300px;"><div class="item">
+                	<ul class="us_ul_list">
+                        <li>
+                            <a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/471.html" target="_blank">
+                            <div class="per_pic"><img src="/images/100.jpg" alt="几句话高规格花花"></div>
+                            <div class="per_text">
+                                <h3>几句话高规格花花</h3>
+                                <dl class="star_user_dl fl">
+                                    <dt><img src="/images/100.jpg" alt="暖暖哒" class="star_user_photo"></dt>
+                                    <dd>
+                                        <div class="star_user_name_s"><h3 class="star_user_name">暖暖哒</h3></div>
+                                    </dd>
+                                </dl>
+                                <div class="fr i_3">1</div>
+                                <div class="clear"></div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div></div><div class="owl-item" style="width: 300px;"><div class="item">
+                	<ul class="us_ul_list">
+                        <li>
+                            <a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/470.html" target="_blank">
+                            <div class="per_pic"><img src="/images/100.jpg" alt="机关干部沟沟壑壑"></div>
+                            <div class="per_text">
+                                <h3>机关干部沟沟壑壑</h3>
+                                <dl class="star_user_dl fl">
+                                    <dt><img src="../images/100.jpg" alt="暖暖哒" class="star_user_photo"></dt>
+                                    <dd>
+                                        <div class="star_user_name_s"><h3 class="star_user_name">暖暖哒</h3></div>
+                                    </dd>
+                                </dl>
+                                <div class="fr i_3">3</div>
+                                <div class="clear"></div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div></div><div class="owl-item" style="width: 300px;"><div class="item">
+                	<ul class="us_ul_list">
+                        <li>
+                            <a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/469.html" target="_blank">
+                            <div class="per_pic"><img src="/images/100.jpg" alt="很简洁聚集"></div>
+                            <div class="per_text">
+                                <h3>很简洁聚集</h3>
+                                <dl class="star_user_dl fl">
+                                    <dt><img src="/images/100.jpg" alt="暖暖哒" class="star_user_photo"></dt>
+                                    <dd>
+                                        <div class="star_user_name_s"><h3 class="star_user_name">暖暖哒</h3></div>
+                                    </dd>
+                                </dl>
+                                <div class="fr i_3">2</div>
+                                <div class="clear"></div>
+                            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div></div></div></div>                
+            
+            
+        </div>
+        <!--collection_box end-->
+        
+	</div>
+</div>
+<div class="b_box">
+		<!--ad-->
+	<div class="ad_box2">
+	<a href="http://yphting.zglxkj.com/index.php/Home/Member/favs/t/1.html"><img src="/images/20180414123932-28064.jpg" alt="底部广告 说吧"></a>	</div>
+	<!--ad end-->
+	<a href="http://yphting.zglxkj.com/index.php/Home/Member/seller.html" class="footer_text">
+	<h2 class="index_h2_title c_0">加入我们<span class="c_1">•</span>招募韩国商家、华人</h2>
+	<div class="bg_ic_1">招募韩国商家、海外留学生、华人兼司机、导游</div>
+	<div class="bt_btn_d"><span class="btn_a_more bs_bt_a">商家入驻</span></div>
+	</a></div>
+
+<!--底部-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="/images/footer_ewm.png" alt=""></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink">
+				<a href="javascript:void(0);">商家入驻</a>|<a href="javascript:void(0);">帮助中心</a>|<a href="javascript:void(0);">人才招聘</a>|
+				<a href="javascript:void(0);">联系我们</a>|<a href="javascript:void(0);">网站地图</a>|<a href="javascript:void(0);">使用条款</a>
+			</p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+			<p>Copyright © 钟大佬 版权所有</p>		
+		</dd>
+	</dl>
+</div>
+<!--底部 结束-->
+
+<!--右侧 nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a></li>
+	<li><a href="javascript:void(0);" class="rn_kf">在线客服</a></li>
+</ul>
+<!--右侧 nav 结束-->
+
+</body>
+<script type="text/javascript">
+	$("[name=soso]").click(function(){
+		var title = $("[name=findkey]").val();
+		location.href="/c/getAllMyServiceCollection?num=1&size=3&title="+title;
+	});
+	
+// 	$(".col_418").hover(function(){
+// 		$(this).find(".lajit").show();
+	
+	
+// 	});
+	
+	$(".col_418").hover(function(){
+		$(this).find(".lajit").show();
+    },function(){
+    	$(this).find(".lajit").hide();
+    });
+	
+	$(".lajit").click(function(){
+		var $this = $(this);
+		var sid = $(this).attr("sid");
+		if(window.confirm("确定要取消收藏吗？")){
+			$.ajax("/c/removeMyServiceCollectionByid?serviceid="+sid,{
+				type:"post",
+				contentType:"application/json",
+				dataType:"json",
+				success:function(json){
+					if(json.code==200){
+						alert("取消收藏成功");
+						$this.parent().parent().parent().remove();
+					}else{
+						alert("取消收藏失败");
+					}
+					
+				}
+			});
+		}
+		
+		
+		
+	});
+	
+	
+
+
+</script>
+</html>

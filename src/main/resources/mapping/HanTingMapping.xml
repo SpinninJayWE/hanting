@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.accp.dao.DJJ.IHanTingDao">
+	
+	<select id="queryMyYudin" resultType="com.accp.pojo.Service">
+	select * from service where userID=#{usid}
+	</select>
+	
+	<update id="jifenadd">
+	UPDATE `user` SET  userIntegral=#{jifen} WHERE userID=#{usid}
+	</update>
+	
+	<select id="queryJifenGuige" resultType="com.accp.pojo.Integral">
+	SELECT * FROM integral WHERE integralID=#{inteid}
+	
+	</select>
+	
+	<insert id="addJifenRecord">
+		INSERT INTO integralrecord(userID,IRDate,IRDescribe,recordInAndOut,integralID,auditStatus)
+		VALUES(#{userID},NOW(),#{IRDescribe},#{recordInAndOut},#{integralID},#{auditStatus});
+	</insert>
+	
+	<select id="queryJifenRecord" resultType="com.accp.pojo.Integralrecord">
+	SELECT * FROM integralrecord WHERE userID=1 AND DATE_FORMAT(IRDate,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
+	</select>
+	
+	<select id="queryAllMyJifenRecord" resultType="com.accp.pojo.Integralrecord">
+	SELECT * FROM integralrecord WHERE userID=#{usid}
+	</select>
+	
+	
+	
+	<select id="queryAllMyServicecollection" resultType="com.accp.vo.DJJ.ServiceCollectionVo">
+	SELECT * FROM servicecollection,services WHERE 
+	servicecollection.`serviceID`=services.`serviceID` AND  
+	servicecollection.`userID`=#{usid} 
+	<if test="#{title!=null}">
+	and serviceTitle LIKE '%${title}%'
+	</if>
+	</select>
+	
+	<select id="queryAllMyOrder" resultType="com.accp.vo.DJJ.ordersServicesServiceTypeVo">
+	SELECT * FROM orders,services,`user`,servicetype WHERE 
+	orders.`serviceID`=services.`serviceID` AND 
+	servicetype.`stid`=services.`stid` AND 
+	services.`userID`=user.`userID` AND 
+	orders.`userID`=#{usid}
+	<if test="#{title!=null}">
+	AND serviceTitle LIKE '%${title}%'
+	</if>
+	</select>
+	
+	<select id="queryordersStateNumber" resultType="com.accp.vo.DJJ.OrdersStateNumber">
+	SELECT a.daif,b.daij,c.daiq,d.daip FROM
+(SELECT COUNT(*) daif  FROM orders WHERE orderStatus=1 AND userID=#{usid})a,
+(SELECT COUNT(*) daij  FROM orders WHERE orderStatus=2 AND userID=#{usid})b,
+(SELECT COUNT(*) daiq FROM orders WHERE orderStatus=3 AND userID=#{usid})c,
+(SELECT COUNT(*) daip  FROM orders WHERE orderStatus=4 AND userID=#{usid})d
+	</select>
+	
+	<delete id="deleteMyServicecollection">
+	DELETE FROM servicecollection WHERE serColleID=#{sercolleid}
+	</delete>
+	
+	<update id="updateOrderState">
+	UPDATE orders SET orderStatus=#{State} WHERE orderID=#{oid}
+	</update>
+	
+	
+</mapper>
