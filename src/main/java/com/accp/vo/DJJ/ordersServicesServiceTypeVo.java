@@ -20,10 +20,17 @@ public class ordersServicesServiceTypeVo {
 	private String userRealName;
 	private String shopName;
 	private int businessState;
+	private Float totalPrice;
 	
 	
 	
 	
+	public Float getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(Float totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	public String getServiceFuTitle() {
 		return serviceFuTitle;
 	}

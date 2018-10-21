@@ -23,9 +23,28 @@ public class Post {
 
 	private Integer operatingstate;
 
-	private Integer recommend;
+	private Boolean essence;
+
+	private Boolean solid;
+
+	private Integer majorid;
+
+	private String resourcespath;
+
+	private String servicecosttypeid;
+
+	private Integer integral;
+
+	private Integer goldcoin;
+
+	private String videopath;
+
+	private String coverpath;
+
+	private String time;
 
 	private Integer auditstatus;
+
 	private String content;
 
 	private String adminopinion;
@@ -126,12 +145,84 @@ public class Post {
 		this.operatingstate = operatingstate;
 	}
 
-	public Integer getRecommend() {
-		return recommend;
+	public Boolean getEssence() {
+		return essence;
 	}
 
-	public void setRecommend(Integer recommend) {
-		this.recommend = recommend;
+	public void setEssence(Boolean essence) {
+		this.essence = essence;
+	}
+
+	public Boolean getSolid() {
+		return solid;
+	}
+
+	public void setSolid(Boolean solid) {
+		this.solid = solid;
+	}
+
+	public Integer getMajorid() {
+		return majorid;
+	}
+
+	public void setMajorid(Integer majorid) {
+		this.majorid = majorid;
+	}
+
+	public String getResourcespath() {
+		return resourcespath;
+	}
+
+	public void setResourcespath(String resourcespath) {
+		this.resourcespath = resourcespath == null ? null : resourcespath.trim();
+	}
+
+	public String getServicecosttypeid() {
+		return servicecosttypeid;
+	}
+
+	public void setServicecosttypeid(String servicecosttypeid) {
+		this.servicecosttypeid = servicecosttypeid == null ? null : servicecosttypeid.trim();
+	}
+
+	public Integer getIntegral() {
+		return integral;
+	}
+
+	public void setIntegral(Integer integral) {
+		this.integral = integral;
+	}
+
+	public Integer getGoldcoin() {
+		return goldcoin;
+	}
+
+	public void setGoldcoin(Integer goldcoin) {
+		this.goldcoin = goldcoin;
+	}
+
+	public String getVideopath() {
+		return videopath;
+	}
+
+	public void setVideopath(String videopath) {
+		this.videopath = videopath == null ? null : videopath.trim();
+	}
+
+	public String getCoverpath() {
+		return coverpath;
+	}
+
+	public void setCoverpath(String coverpath) {
+		this.coverpath = coverpath == null ? null : coverpath.trim();
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time == null ? null : time.trim();
 	}
 
 	public Integer getAuditstatus() {

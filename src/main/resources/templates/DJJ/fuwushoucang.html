@@ -17,7 +17,7 @@
 				<a href="javascript:void(0);">联系我们</a></div>
 			
 			<div class="top_right login_right">
-				<a th:href="@{/c/Gerenzx}">[[${session.USER.uesr.username}]]</a>
+				<a th:href="@{/c/Gerenzx}">[[${session.USER.user.username}]]</a>
 				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
             	<span class="ht_line"></span><a href="javascript:void(0);"><img src="/images/e_i.png" alt=""></a>
 			</div>
@@ -54,7 +54,7 @@
         <div class="collection_box">
             <ul class="pre_about_info collection_nav">
                 <li class="cur"><a href="http://yphting.zglxkj.com/index.php/Home/Member/favs/t/1.html">全部</a></li>
-				<li  th:each="temp,iterState : ${ServiceCollt.list}"><a href="#"  th:text="${temp.stName}"><span class="pre_asp">微整形</span></a></li></ul>
+				<li  th:each="temp,iterState : ${serviceCollType}"><a href="#"  th:text="${temp.stName}"><span class="pre_asp">微整形</span></a></li></ul>
          
             <ul class="us_ul_list collection_list_ul">
 			

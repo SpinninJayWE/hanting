@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accp.biz.DJJ.HanTingBiz;
+import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
 import com.accp.pojo.Login;
+import com.accp.pojo.Orders;
 import com.accp.pojo.Service;
+import com.accp.vo.DJJ.MyServiceCollCetionType;
 import com.accp.vo.DJJ.OrdersStateNumber;
 import com.accp.vo.DJJ.ServiceCollectionVo;
 import com.accp.vo.DJJ.ordersServicesServiceTypeVo;
@@ -49,8 +52,8 @@ public class HanTingAction {
 		
 		
 		biz.addJifenRec(lo.getUserid(), "通过"+qdaoguige+"获得", interade, 1, 2);
-		int jifen=lo.getUesr().getUserintegral()+interade;
-		lo.getUesr().setUserintegral(jifen);
+		int jifen=lo.getUser().getUserintegral()+interade;
+		lo.getUser().setUserintegral(jifen);
 		int cont = biz.addUserJifen(jifen, lo.getUserid());
 		if(cont>0) {
 			System.out.println("积分"+jifen);
@@ -112,8 +115,9 @@ public class HanTingAction {
 	public String getAllMyServiceCollection(int num,int size,String title,HttpSession session,Model model) {
 		Login lo = (Login) session.getAttribute("USER");
 		PageInfo<ServiceCollectionVo> ServiceCollt = biz.findAllMyServiceCollection(lo.getUserid(),title,num,size);
+		List<MyServiceCollCetionType> serviceCollType = biz.findMyServiceCollCetionType(lo.getUserid());
 		model.addAttribute("ServiceCollt",ServiceCollt);
-		
+		model.addAttribute("serviceCollType",serviceCollType);
 		return "DJJ/fuwushoucang";
 		
 	}
@@ -155,10 +159,10 @@ public class HanTingAction {
 		int count = biz.updateMyOrderState(state, oid);
 		if(count>0) {
 			message.put("code", "200");
-			message.put("msg", "取消服务成功");
+			message.put("msg", "成功修改状态");
 		}else {
 			message.put("code", "500");
-			message.put("msg", "取消服务失败");
+			message.put("msg", "修改状态失败");
 		}
 		
 		return message;
@@ -166,7 +170,67 @@ public class HanTingAction {
 	}
 	
 	
+	@GetMapping("getOrdersByoid")
+	public String getOrdersByoid(String oid,HttpSession session,Model model) {
+		Orders order =biz.findOrdersByoid(oid);
+		Login lo = (Login) session.getAttribute("USER");
+		model.addAttribute("order",order);
+		
+		return "DJJ/zhifu";
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="updateUserMoney",method=RequestMethod.POST)
+	public Map<String ,Object> updateUserMoney(int usmoney,HttpSession session){
+		Map<String,Object> message=new HashMap<String,Object>();
+		Login lo = (Login) session.getAttribute("USER");
+		int count = biz.updateUserMoney(usmoney, lo.getUserid());
+		if(count>0) {
+			lo.getUser().setUsermoney(usmoney);
+			message.put("code", "200");
+			message.put("msg", "金额已扣除");
+		}else {
+			message.put("code", "500");
+			message.put("msg", "金额扣除失败");
+		}
+		
+		return message;
+	}
+	
+	@GetMapping("getMyGoldnotes")
+	public String getMyGoldnotes(int num,int size,Model model,HttpSession session) {
+		Login lo = (Login) session.getAttribute("USER");
+		PageInfo<Goldnotes> goldnotes = biz.findMyGoldnotes(lo.getUserid(), num, size);
+		model.addAttribute("goldnotes",goldnotes);
+		
+		return "DJJ/wodejinbi";
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="addGoldNote",method=RequestMethod.POST)
+	public Map<String ,Object> addGoldNote(String recordDescribe,Float recordInAndOut,int auditStatus,HttpSession session){
+		Map<String,Object> message=new HashMap<String,Object>();
+		Login lo = (Login) session.getAttribute("USER");
+		Goldnotes gold =new Goldnotes(0, lo.getUserid(), null, recordDescribe, recordInAndOut, auditStatus);
+		int count = biz.addGoldNote(gold);
+		if(count>0) {
+			message.put("code", "200");
+			message.put("msg", "金币流向表更新成功");
+		}else {
+			message.put("code", "500");
+			message.put("msg", "金币流向表更新失败");
+		}
+		
+		return message;
+	}
+	
+	@GetMapping("cz")
+	public String cz(HttpSession session) {
+		Login lo = (Login) session.getAttribute("USER");
+		
+		return "DJJ/jinb-index";
+	}
 	
 
 	

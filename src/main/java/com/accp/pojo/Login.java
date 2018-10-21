@@ -13,16 +13,16 @@ public class Login {
 
     private String userpwd;
     
-    private User uesr;
+    private User user;
     
     
 
-    public User getUesr() {
-		return uesr;
+    public User getUser() {
+		return user;
 	}
 
-	public void setUesr(User uesr) {
-		this.uesr = uesr;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Integer getLoginid() {

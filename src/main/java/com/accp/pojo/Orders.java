@@ -31,6 +31,8 @@ public class Orders {
 
     private Float smallplan;
 
+    private Float totalprice;
+
     private String uploadpath;
 
     private Double weight;
@@ -42,8 +44,6 @@ public class Orders {
     private Integer addressid;
 
     private Integer orderstatus;
-
-    private Integer auditstatus;
 
     private String remarks;
 
@@ -159,6 +159,14 @@ public class Orders {
         this.smallplan = smallplan;
     }
 
+    public Float getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(Float totalprice) {
+        this.totalprice = totalprice;
+    }
+
     public String getUploadpath() {
         return uploadpath;
     }
@@ -205,14 +213,6 @@ public class Orders {
 
     public void setOrderstatus(Integer orderstatus) {
         this.orderstatus = orderstatus;
-    }
-
-    public Integer getAuditstatus() {
-        return auditstatus;
-    }
-
-    public void setAuditstatus(Integer auditstatus) {
-        this.auditstatus = auditstatus;
     }
 
     public String getRemarks() {

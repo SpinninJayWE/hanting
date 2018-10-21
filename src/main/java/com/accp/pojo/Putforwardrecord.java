@@ -7,7 +7,9 @@ public class Putforwardrecord {
 
     private Integer userid;
 
-    private String bankname;
+    private String bankaccount;
+
+    private Integer bankid;
 
     private Date submittime;
 
@@ -33,12 +35,20 @@ public class Putforwardrecord {
         this.userid = userid;
     }
 
-    public String getBankname() {
-        return bankname;
+    public String getBankaccount() {
+        return bankaccount;
     }
 
-    public void setBankname(String bankname) {
-        this.bankname = bankname == null ? null : bankname.trim();
+    public void setBankaccount(String bankaccount) {
+        this.bankaccount = bankaccount == null ? null : bankaccount.trim();
+    }
+
+    public Integer getBankid() {
+        return bankid;
+    }
+
+    public void setBankid(Integer bankid) {
+        this.bankid = bankid;
     }
 
     public Date getSubmittime() {

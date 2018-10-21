@@ -7,7 +7,9 @@ public class Servicelevel {
 
     private Integer stid;
 
-    private Integer transactionvalue;
+    private Integer serviceintegralmin;
+
+    private Integer serviceintegralmax;
 
     public Integer getSerlevelid() {
         return serlevelid;
@@ -33,11 +35,19 @@ public class Servicelevel {
         this.stid = stid;
     }
 
-    public Integer getTransactionvalue() {
-        return transactionvalue;
+    public Integer getServiceintegralmin() {
+        return serviceintegralmin;
     }
 
-    public void setTransactionvalue(Integer transactionvalue) {
-        this.transactionvalue = transactionvalue;
+    public void setServiceintegralmin(Integer serviceintegralmin) {
+        this.serviceintegralmin = serviceintegralmin;
+    }
+
+    public Integer getServiceintegralmax() {
+        return serviceintegralmax;
+    }
+
+    public void setServiceintegralmax(Integer serviceintegralmax) {
+        this.serviceintegralmax = serviceintegralmax;
     }
 }

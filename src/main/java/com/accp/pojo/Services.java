@@ -27,17 +27,13 @@ public class Services {
 
     private String serviceimgurlfour;
 
-    private String serviceimgurlfive;
+    private String servicecosttypeid;
 
     private String serviceintro;
 
+    private String servicecity;
+
     private Integer country;
-
-    private Integer provincialid;
-
-    private Integer cityid;
-
-    private Integer countyid;
 
     private String servicecostinclude;
 
@@ -62,6 +58,10 @@ public class Services {
     private Integer servicehour;
 
     private String uploaddataurl;
+
+    private Date releasetime;
+
+    private Integer browsenumber;
 
     private Float weight;
 
@@ -167,12 +167,12 @@ public class Services {
         this.serviceimgurlfour = serviceimgurlfour == null ? null : serviceimgurlfour.trim();
     }
 
-    public String getServiceimgurlfive() {
-        return serviceimgurlfive;
+    public String getServicecosttypeid() {
+        return servicecosttypeid;
     }
 
-    public void setServiceimgurlfive(String serviceimgurlfive) {
-        this.serviceimgurlfive = serviceimgurlfive == null ? null : serviceimgurlfive.trim();
+    public void setServicecosttypeid(String servicecosttypeid) {
+        this.servicecosttypeid = servicecosttypeid == null ? null : servicecosttypeid.trim();
     }
 
     public String getServiceintro() {
@@ -183,36 +183,20 @@ public class Services {
         this.serviceintro = serviceintro == null ? null : serviceintro.trim();
     }
 
+    public String getServicecity() {
+        return servicecity;
+    }
+
+    public void setServicecity(String servicecity) {
+        this.servicecity = servicecity == null ? null : servicecity.trim();
+    }
+
     public Integer getCountry() {
         return country;
     }
 
     public void setCountry(Integer country) {
         this.country = country;
-    }
-
-    public Integer getProvincialid() {
-        return provincialid;
-    }
-
-    public void setProvincialid(Integer provincialid) {
-        this.provincialid = provincialid;
-    }
-
-    public Integer getCityid() {
-        return cityid;
-    }
-
-    public void setCityid(Integer cityid) {
-        this.cityid = cityid;
-    }
-
-    public Integer getCountyid() {
-        return countyid;
-    }
-
-    public void setCountyid(Integer countyid) {
-        this.countyid = countyid;
     }
 
     public String getServicecostinclude() {
@@ -309,6 +293,22 @@ public class Services {
 
     public void setUploaddataurl(String uploaddataurl) {
         this.uploaddataurl = uploaddataurl == null ? null : uploaddataurl.trim();
+    }
+
+    public Date getReleasetime() {
+        return releasetime;
+    }
+
+    public void setReleasetime(Date releasetime) {
+        this.releasetime = releasetime;
+    }
+
+    public Integer getBrowsenumber() {
+        return browsenumber;
+    }
+
+    public void setBrowsenumber(Integer browsenumber) {
+        this.browsenumber = browsenumber;
     }
 
     public Float getWeight() {

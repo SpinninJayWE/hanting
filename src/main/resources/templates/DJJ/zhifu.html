@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>我预定的服务_韩汀社区</title>
+    <link href="../css/common.css" rel="stylesheet"><!--该页面的所有css-->
+    <script type="text/javascript" src="../js/jquery-1.8.3.js" ></script><!--js 1.8.3-->
+<body>
+<!--头部-->
+<div class="header" id="botop">
+    <div class="h_top">
+        <div class="b_box">
+            <div class="top_nav">
+                <a href="javascript:void(0);">首页</a><span class="ht_line"></span>
+                <a href="javascript:void(0);">商家入驻</a><span class="ht_line"></span>
+                <a href="javascript:void(0);">帮助中心</a><span class="ht_line"></span>
+                <a href="javascript:void(0);">关于韩汀</a><span class="ht_line"></span>
+                <a href="javascript:void(0);">联系我们</a></div>
+
+            <div class="top_right login_right">
+                <a th:href="@{/c/Gerenzx}">[[${session.USER.user.username}]]</a>
+                <span class="ht_line"></span><a href="javascript:void(0);">退出</a>
+                <span class="ht_line"></span><a href="javascript:void(0);"><img src="./images/e_i.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="b_box nav_header community_header">
+        <a href="http://yphting.zglxkj.com/index.php/" class="logo logo_community">御品韩汀.社区</a>
+        <h1 class="header_h1">预定服务</h1>
+    </div>
+</div>
+<!--header end-->
+
+<a href="http://yphting.zglxkj.com/index.php/Home/About/help.html" class="zy_box">预定流程指引</a>
+
+<div class="bg_c3 pt1">
+    <div class="b_box">
+        <h3 class="yd_sev_h3 nopl">支付信息</h3>
+        <div class="fa_zf_part">
+            <div class="fa_zf_r">需要支付<span class="jy_num" th:text="${order.totalprice}">2200.0</span></div>
+            现金币余额<span class="jy_num now_num">[[${session.USER.user.usermoney}]]</span>
+        </div>
+
+        <div class="fa_xz">
+            <div class="fa_zf_r t_c">
+                <div th:if="${session.USER.user.usermoney}<${order.totalprice}">
+                <a th:href="@{/c/cz}" class="btn_jy_a f22 cz">充值</a><br>
+                <span class="f14 c_4" style="color: red;">您的余额不足✘</span>
+                </div>
+                <div th:if="${session.USER.user.usermoney}>${order.totalprice}">
+                <a style="background:green;" href="javascript:void()" th:onclick=" 'javascript:zf('+${session.USER.user.usermoney}+','+${order.totalprice}+','+${order.orderid}+')' " class="btn_jy_a f22 zf">支付</a><br>
+                <span class="f14 c_4" style="color:green;">您可以直接购买✔</span>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!--底部-->
+<div class="footer community_footer_dl">
+    <dl class="footer_dl">
+        <dt>
+        <div class="footer_ewm_box"><img src="./images/footer_ewm.png" alt=""></div>
+        <span class="ft_ewm_name">御品韩汀</span>
+        </dt>
+        <dd>
+            <p class="flink">
+                <a href="javascript:void(0);">商家入驻</a>|<a href="javascript:void(0);">帮助中心</a>|<a href="javascript:void(0);">人才招聘</a>|
+                <a href="javascript:void(0);">联系我们</a>|<a href="javascript:void(0);">网站地图</a>|<a href="javascript:void(0);">使用条款</a>
+            </p>
+            <p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+            <p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+            <p>Copyright © 钟大佬 版权所有</p>
+        </dd>
+    </dl>
+</div>
+<!--底部 结束-->
+
+<!--右侧 nav-->
+<ul class="right_nav">
+    <li><a href="javascript:void(0);" class="rn_tel">客服电话</a></li>
+    <li><a href="javascript:void(0);" class="rn_wx">官方微信</a></li>
+    <li><a href="javascript:void(0);" class="rn_kf">在线客服</a></li>
+</ul>
+<!--右侧 nav 结束-->
+
+</body>
+<script type="text/javascript">
+		function zf(usermoney,ordertola,oid){
+			var usermoneyu =(usermoney-ordertola);
+			if(window.confirm("确定支付该订单吗？")){
+				
+			
+			$.ajax("/c/updateUserMoney?usmoney="+usermoneyu,{
+				type:"post",
+				dataType:"json",
+				success:function(json){
+					if(json.code==200){
+						$.ajax("/c/updateMyOrderState?state=2&oid="+oid,{
+							type:"post",
+							contentType:"application/json",
+							dataType:"json",
+							success:function(json){
+								if(json.code==200){
+									alert("支付成功，等待商家接单");
+										
+										
+								}else{
+									alert("订单异常");
+								}
+							}
+							
+						});
+						var recordDescribe="支付订单，订单号"+oid;
+						var recordInAndOut =-ordertola;
+						var auditStatus=2;
+						$.ajax("/c/addGoldNote?recordDescribe="+recordDescribe+"&recordInAndOut="+recordInAndOut+"&auditStatus="+auditStatus,{
+							type:"post",
+							contentType:"application/json",
+							dataType:"json",
+							success:function(json){
+								if(json.code==200){
+									console.info("金币流向更新成功");
+									location.href="getAllMyOrders?num=1&size=3";
+								}
+							}
+							
+						});
+						
+						
+					}else{
+						alert("支付异常");
+					}
+				}
+				
+			});
+			
+			}
+		}
+
+
+</script>
+
+
+</html>

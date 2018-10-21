@@ -1,5 +1,7 @@
 package com.accp.pojo;
 
+import java.util.Date;
+
 public class Merchantcollection {
     private Integer collectid;
 
@@ -7,9 +9,9 @@ public class Merchantcollection {
 
     private Integer merchantorservicebyid;
 
-    private String merchantorservicebyname;
-
     private Integer collecttype;
+
+    private Date collectiontime;
 
     public Integer getCollectid() {
         return collectid;
@@ -35,19 +37,19 @@ public class Merchantcollection {
         this.merchantorservicebyid = merchantorservicebyid;
     }
 
-    public String getMerchantorservicebyname() {
-        return merchantorservicebyname;
-    }
-
-    public void setMerchantorservicebyname(String merchantorservicebyname) {
-        this.merchantorservicebyname = merchantorservicebyname == null ? null : merchantorservicebyname.trim();
-    }
-
     public Integer getCollecttype() {
         return collecttype;
     }
 
     public void setCollecttype(Integer collecttype) {
         this.collecttype = collecttype;
+    }
+
+    public Date getCollectiontime() {
+        return collectiontime;
+    }
+
+    public void setCollectiontime(Date collectiontime) {
+        this.collectiontime = collectiontime;
     }
 }

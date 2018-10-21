@@ -24,11 +24,11 @@
 	</insert>
 	
 	<select id="queryJifenRecord" resultType="com.accp.pojo.Integralrecord">
-	SELECT * FROM integralrecord WHERE userID=1 AND DATE_FORMAT(IRDate,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
+	SELECT * FROM integralrecord WHERE userID=#{usid} AND DATE_FORMAT(IRDate,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
 	</select>
 	
 	<select id="queryAllMyJifenRecord" resultType="com.accp.pojo.Integralrecord">
-	SELECT * FROM integralrecord WHERE userID=#{usid}
+	SELECT * FROM integralrecord WHERE userID=#{usid} ORDER BY IRDate DESC
 	</select>
 	
 	
@@ -69,5 +69,32 @@
 	UPDATE orders SET orderStatus=#{State} WHERE orderID=#{oid}
 	</update>
 	
+	<select id="queryMyServiceCollEctionType" resultType="com.accp.vo.DJJ.MyServiceCollCetionType">
+	SELECT d.stName,COUNT(*) AS num
+FROM ServiceCollection AS a,services AS b,`user` AS c,servicetype AS d  WHERE 
+a.serviceID=b.serviceID AND b.userid=c.userid AND b.stid=d.stid AND a.userid=#{usid} GROUP BY d.stName 
+	</select>
 	
+	<select id="queryOrderByOid" resultType="com.accp.pojo.Orders">
+		SELECT * FROM orders WHERE orderID=#{oid}
+	
+	</select>
+	
+	<update id="updateUserMoney">
+	UPDATE USER SET userMoney=#{usmoney} WHERE userID=#{usid}
+	</update>
+	
+	<select id="queryGoldnotes" resultType="com.accp.pojo.Goldnotes">
+		SELECT * FROM goldnotes WHERE userid=#{usid} ORDER BY recordDate DESC	
+	</select>
+	
+	<insert id="addGoldNote">
+	INSERT INTO goldnotes(`userID`,`recordDate`,`recordDescribe`,`recordInAndOut`,`auditStatus`)VALUES
+(#{Gold.userid},NOW(),#{Gold.recorddescribe},#{Gold.recordinandout},#{Gold.auditstatus});
+	</insert>
+	
+	<!-- 查询金币流向表最大ID -->
+	<select id="queryMaxgoldrecordId" resultType="int">
+	SELECT MAX(recordID)FROM goldnotes
+	</select>
 </mapper>

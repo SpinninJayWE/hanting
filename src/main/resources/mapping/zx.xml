@@ -12,7 +12,7 @@
     <result column="logintype" property="logintype"/>
     <result column="useremail" property="useremail"/>
     <result column="userpwd" property="userpwd"/>
-    <association property="uesr" column="userid" select="queryUser"></association>
+    <association property="user" column="userid" select="queryUser"></association>
     </resultMap>
     
     <select id="queryUser" resultType="com.accp.pojo.User">

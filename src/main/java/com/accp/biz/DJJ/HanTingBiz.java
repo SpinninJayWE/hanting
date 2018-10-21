@@ -9,8 +9,11 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import com.accp.dao.DJJ.IHanTingDao;
+import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
+import com.accp.pojo.Orders;
+import com.accp.vo.DJJ.MyServiceCollCetionType;
 import com.accp.vo.DJJ.OrdersStateNumber;
 import com.accp.vo.DJJ.ServiceCollectionVo;
 import com.accp.vo.DJJ.ordersServicesServiceTypeVo;
@@ -77,7 +80,31 @@ public class HanTingBiz {
 		return count;
 	}
 	
+	public List<MyServiceCollCetionType> findMyServiceCollCetionType(int usid){
+		return dao.queryMyServiceCollEctionType(usid);
+	}
 	
+	public Orders findOrdersByoid(String oid) {
+		return dao.queryOrderByOid(oid);
+	}
+	
+	public int updateUserMoney(Integer usmoney,Integer usid) {
+		return dao.updateUserMoney(usmoney, usid);
+	}
+	
+	public PageInfo<Goldnotes> findMyGoldnotes(int usid,int num,int size){
+		PageHelper.startPage(num, size);
+		return new PageInfo<Goldnotes>(dao.queryGoldnotes(usid));
+	}
+	
+	public int addGoldNote(Goldnotes gold) {
+		int count = dao.addGoldNote(gold);
+		return count;
+	}
+	
+	public int findGoldNoteMaxRecordId() {
+		return dao.queryMaxgoldrecordId();
+	}
 	
 
 }

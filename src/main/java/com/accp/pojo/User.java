@@ -13,9 +13,9 @@ public class User {
 
     private Integer usersex;
 
-    private String contactmailbox;
-
     private String userphone;
+
+    private String contactmailbox;
 
     private Integer usermoney;
 
@@ -32,6 +32,8 @@ public class User {
     private String addetail;
 
     private Integer merchanttype;
+
+    private Date merchantregistrationtime;
 
     private Integer firstserviceid;
 
@@ -99,7 +101,11 @@ public class User {
 
     private Boolean trusteeship;
 
-    private Boolean businessstate;
+    private Date trusteeshipstarttime;
+
+    private Integer trusteeshipmonth;
+
+    private Integer businessstate;
 
     private Integer experience;
 
@@ -110,6 +116,14 @@ public class User {
     private Integer creditscore;
 
     private Boolean stateboolean;
+
+    private Boolean mailboxverification;
+
+    private String registerip;
+
+    private String lastentry;
+
+    private Date userregistrationtime;
 
     private Date recententry;
 
@@ -155,20 +169,20 @@ public class User {
         this.usersex = usersex;
     }
 
-    public String getContactmailbox() {
-        return contactmailbox;
-    }
-
-    public void setContactmailbox(String contactmailbox) {
-        this.contactmailbox = contactmailbox == null ? null : contactmailbox.trim();
-    }
-
     public String getUserphone() {
         return userphone;
     }
 
     public void setUserphone(String userphone) {
         this.userphone = userphone == null ? null : userphone.trim();
+    }
+
+    public String getContactmailbox() {
+        return contactmailbox;
+    }
+
+    public void setContactmailbox(String contactmailbox) {
+        this.contactmailbox = contactmailbox == null ? null : contactmailbox.trim();
     }
 
     public Integer getUsermoney() {
@@ -233,6 +247,14 @@ public class User {
 
     public void setMerchanttype(Integer merchanttype) {
         this.merchanttype = merchanttype;
+    }
+
+    public Date getMerchantregistrationtime() {
+        return merchantregistrationtime;
+    }
+
+    public void setMerchantregistrationtime(Date merchantregistrationtime) {
+        this.merchantregistrationtime = merchantregistrationtime;
     }
 
     public Integer getFirstserviceid() {
@@ -499,11 +521,27 @@ public class User {
         this.trusteeship = trusteeship;
     }
 
-    public Boolean getBusinessstate() {
+    public Date getTrusteeshipstarttime() {
+        return trusteeshipstarttime;
+    }
+
+    public void setTrusteeshipstarttime(Date trusteeshipstarttime) {
+        this.trusteeshipstarttime = trusteeshipstarttime;
+    }
+
+    public Integer getTrusteeshipmonth() {
+        return trusteeshipmonth;
+    }
+
+    public void setTrusteeshipmonth(Integer trusteeshipmonth) {
+        this.trusteeshipmonth = trusteeshipmonth;
+    }
+
+    public Integer getBusinessstate() {
         return businessstate;
     }
 
-    public void setBusinessstate(Boolean businessstate) {
+    public void setBusinessstate(Integer businessstate) {
         this.businessstate = businessstate;
     }
 
@@ -545,6 +583,38 @@ public class User {
 
     public void setStateboolean(Boolean stateboolean) {
         this.stateboolean = stateboolean;
+    }
+
+    public Boolean getMailboxverification() {
+        return mailboxverification;
+    }
+
+    public void setMailboxverification(Boolean mailboxverification) {
+        this.mailboxverification = mailboxverification;
+    }
+
+    public String getRegisterip() {
+        return registerip;
+    }
+
+    public void setRegisterip(String registerip) {
+        this.registerip = registerip == null ? null : registerip.trim();
+    }
+
+    public String getLastentry() {
+        return lastentry;
+    }
+
+    public void setLastentry(String lastentry) {
+        this.lastentry = lastentry == null ? null : lastentry.trim();
+    }
+
+    public Date getUserregistrationtime() {
+        return userregistrationtime;
+    }
+
+    public void setUserregistrationtime(Date userregistrationtime) {
+        this.userregistrationtime = userregistrationtime;
     }
 
     public Date getRecententry() {

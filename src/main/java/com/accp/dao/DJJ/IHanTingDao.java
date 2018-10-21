@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
+import com.accp.pojo.Orders;
 import com.accp.pojo.Service;
+import com.accp.vo.DJJ.MyServiceCollCetionType;
 import com.accp.vo.DJJ.OrdersStateNumber;
 import com.accp.vo.DJJ.ServiceCollectionVo;
 import com.accp.vo.DJJ.ordersServicesServiceTypeVo;
@@ -34,4 +37,16 @@ public interface IHanTingDao {
 	public int deleteMyServicecollection(@Param("sercolleid") int sercolleid);
 	
 	public int updateOrderState(@Param("State")int State,@Param("oid")int oid);
+	
+	public List<MyServiceCollCetionType> queryMyServiceCollEctionType(@Param("usid")int usid);
+	
+	public Orders queryOrderByOid(@Param("oid")String oid);
+	
+	public int updateUserMoney(@Param("usmoney")Integer usmoney,@Param("usid")Integer usid);
+	
+	public List<Goldnotes> queryGoldnotes(@Param("usid")Integer usid);
+	
+	public int addGoldNote(@Param("Gold") Goldnotes Gold);
+	
+	public int queryMaxgoldrecordId();
 }

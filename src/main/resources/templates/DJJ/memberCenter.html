@@ -17,7 +17,7 @@
 				<a href="javascript:void(0);">联系我们</a></div>
 			
 			<div class="top_right login_right">
-				<a href="javascript:void(0);">[[${session.USER.uesr.username}]]</a>
+				<a href="javascript:void(0);">[[${session.USER.user.username}]]</a>
 				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
             	<span class="ht_line"></span><a href="javascript:void(0);"><img src="../images/e_i.png" alt=""></a>
 			</div>
@@ -48,7 +48,7 @@
             	<li><a href="wodexiazai.html"><span class="msp2 pre_c2"></span>我的下载</a></li>
                 <li><a href="javascript:void(0);"><span class="msp2 community_sp csp7"></span>我的帖子</a></li>
                 <li><a th:href="@{/c/getAllMyServiceCollection?num=1&size=3}"><span class="msp2 pre_c3"></span>我的收藏</a></li>
-                <li><a href="javascript:void(0);"><span class="msp2 pre_c4"></span>我的金币</a></li>
+                <li><a th:href="@{/c/getMyGoldnotes?num=1&size=3}"><span class="msp2 pre_c4"></span>我的金币</a></li>
                 <li><a th:href="@{/c/getAllMyJifenRecord?num=1&size=3}"><span class="msp2 pre_c5"></span>我的积分</a></li>
                 <li><a href="wodepingjia.html"><span class="msp2 pre_c6"></span>我的评价</a></li>
                 <li><a href="wodetuikuan.html"><span class="msp2 pre_c7"></span>我的退款</a></li>
@@ -61,12 +61,12 @@
         <!--内容 右边-->
         <div class="member_right site_msg_w">
         	<dl class="pre_udl">
-            	<dt><img src="../images/20170430042114-13691.jpg" th:alt="${session.USER.uesr.username}"></dt>
+            	<dt><img src="../images/20170430042114-13691.jpg" th:alt="${session.USER.user.username}"></dt>
                 <dd>
-                	<div class="pre_c_name">[[${session.USER.uesr.username}]]<a href="javascript:void(0);" class="edit_a">更改资料</a></div>
+                	<div class="pre_c_name">[[${session.USER.user.username}]]<a href="javascript:void(0);" class="edit_a">更改资料</a></div>
                     <ul class="pre_uul">
-                    	<li><span class="prus psi1">积分</span><span id="jifen" th:text="${session.USER.uesr.userintegral}"></span></li>
-                        <li><span class="prus psi2">金币</span>[[${session.USER.uesr.usermoney}]]</li>
+                    	<li><span class="prus psi1">积分</span><span id="jifen" th:text="${session.USER.user.userintegral}"></span></li>
+                        <li><span class="prus psi2">金币</span>[[${session.USER.user.usermoney}]]</li>
                     </ul>
                     <a href="javascript:void(0);" class="qdao"><span class="qm_i"></span><span class="qiandao">签到送积分</span></a>                    
                 </dd>
@@ -79,16 +79,16 @@
             </ul>
             <h2 class="pre_h2_title">最新预订了</h2>
             <ul class="you_yd_news">
-            	<li th:each="temp,iterState :${services}">
-                	<div class="you_yd_img"><img src="../images/20180113013907-60472.jpg" width="135" height="90" alt="学习资料"></div>
-                    <a href="index.html" class="btn_a_yyd">查看详细</a>
-                    <div class="you_yd_text">
-                    	<div class="yd_xm_title" th:text="${temp.servicetitle}">学习资料</div>
-                        <p th:text="${temp.serviceprice}">学习资料</p>
-                        <p><span class="num_1" th:text="${temp.serviceprice}">222.0</span></p>
-                        <p>                                							1人</p>
-                    </div>
-                </li>
+<!--             	<li th:each="temp,iterState :${services}"> -->
+<!--                 	<div class="you_yd_img"><img src="../images/20180113013907-60472.jpg" width="135" height="90" alt="学习资料"></div> -->
+<!--                     <a href="index.html" class="btn_a_yyd">查看详细</a> -->
+<!--                     <div class="you_yd_text"> -->
+<!--                     	<div class="yd_xm_title" th:text="${temp.servicetitle}">学习资料</div> -->
+<!--                         <p th:text="${temp.serviceprice}">学习资料</p> -->
+<!--                         <p><span class="num_1" th:text="${temp.serviceprice}">222.0</span></p> -->
+<!--                         <p>                                							1人</p> -->
+<!--                     </div> -->
+<!--                 </li> -->
                         </ul>
 
         </div>
@@ -162,7 +162,7 @@
 			
 			
 			$(".qdao").click(function(){
-				
+				$this = $(this);
 				
 				$.getJSON("/c/getMyJifenRecord",function(datas){
 					if(datas.code==200){
@@ -174,6 +174,7 @@
 								success:function(json){
 									if(json.code==200){
 										$('.qdao_pop').fadeIn().delay(3000).fadeOut();
+										$this.remove();
 										$("#jifen").html(json.jifen);
 									}else{
 										alert("签到失败");

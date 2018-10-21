@@ -9,6 +9,8 @@ public class Trusteeship {
 
     private Date applicationtime;
 
+    private Integer trusteeshipmonth;
+
     private Date audittime;
 
     private Integer auditstatus;
@@ -35,6 +37,14 @@ public class Trusteeship {
 
     public void setApplicationtime(Date applicationtime) {
         this.applicationtime = applicationtime;
+    }
+
+    public Integer getTrusteeshipmonth() {
+        return trusteeshipmonth;
+    }
+
+    public void setTrusteeshipmonth(Integer trusteeshipmonth) {
+        this.trusteeshipmonth = trusteeshipmonth;
     }
 
     public Date getAudittime() {

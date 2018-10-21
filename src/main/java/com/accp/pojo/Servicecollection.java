@@ -10,20 +10,8 @@ public class Servicecollection {
     private Integer userid;
 
     private Date collectiontime;
-    
-    private Services services;
-    
-    
 
-    public Services getServices() {
-		return services;
-	}
-
-	public void setServices(Services services) {
-		this.services = services;
-	}
-
-	public Integer getSercolleid() {
+    public Integer getSercolleid() {
         return sercolleid;
     }
 

@@ -7,9 +7,17 @@ public class Putforward {
 
     private Integer userid;
 
-    private String bankname;
+    private String putname;
+
+    private Integer bankid;
+
+    private String bankaccount;
+
+    private String openbankname;
 
     private Date submittime;
+
+    private Date audittime;
 
     private Float money;
 
@@ -31,12 +39,36 @@ public class Putforward {
         this.userid = userid;
     }
 
-    public String getBankname() {
-        return bankname;
+    public String getPutname() {
+        return putname;
     }
 
-    public void setBankname(String bankname) {
-        this.bankname = bankname == null ? null : bankname.trim();
+    public void setPutname(String putname) {
+        this.putname = putname == null ? null : putname.trim();
+    }
+
+    public Integer getBankid() {
+        return bankid;
+    }
+
+    public void setBankid(Integer bankid) {
+        this.bankid = bankid;
+    }
+
+    public String getBankaccount() {
+        return bankaccount;
+    }
+
+    public void setBankaccount(String bankaccount) {
+        this.bankaccount = bankaccount == null ? null : bankaccount.trim();
+    }
+
+    public String getOpenbankname() {
+        return openbankname;
+    }
+
+    public void setOpenbankname(String openbankname) {
+        this.openbankname = openbankname == null ? null : openbankname.trim();
     }
 
     public Date getSubmittime() {
@@ -45,6 +77,14 @@ public class Putforward {
 
     public void setSubmittime(Date submittime) {
         this.submittime = submittime;
+    }
+
+    public Date getAudittime() {
+        return audittime;
+    }
+
+    public void setAudittime(Date audittime) {
+        this.audittime = audittime;
     }
 
     public Float getMoney() {

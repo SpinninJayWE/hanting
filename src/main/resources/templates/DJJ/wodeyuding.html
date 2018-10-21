@@ -17,7 +17,7 @@
 				<a href="javascript:void(0);">联系我们</a></div>
 			
 			<div class="top_right login_right">
-				<a th:href="@{/c/Gerenzx}">[[${session.USER.uesr.username}]]</a>
+				<a th:href="@{/c/Gerenzx}">[[${session.USER.user.username}]]</a>
 				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
             	<span class="ht_line"></span><a href="javascript:void(0);"><img src="../images/e_i.png" alt=""></a>
 			</div>
@@ -48,7 +48,7 @@
             	<li><a href="wodexiazai.html"><span class="msp2 pre_c2"></span>我的下载</a></li>
                 <li><a href="javascript:void(0);"><span class="msp2 community_sp csp7"></span>我的帖子</a></li>
                 <li><a th:href="@{/c/getAllMyServiceCollection?num=1&size=3}"><span class="msp2 pre_c3"></span>我的收藏</a></li>
-                <li><a href="wodejinbi.html"><span class="msp2 pre_c4"></span>我的金币</a></li>
+                <li><a th:href="@{/c/getMyGoldnotes?num=1&size=3}"><span class="msp2 pre_c4"></span>我的金币</a></li>
                 <li><a th:href="@{/c/getAllMyJifenRecord?num=1&size=3}"><span class="msp2 pre_c5"></span>我的积分</a></li>
                 <li><a href="wodepingjia.html"><span class="msp2 pre_c6"></span>我的评价</a></li>
                 <li><a href="wodetuikuan.html"><span class="msp2 pre_c7"></span>我的退款</a></li>
@@ -82,11 +82,11 @@
                     <ul class="book_top_ul">
                         <li>
                             <div class="c_4">下单日期</div>
-                            <p th:text="${temp.orderTime}">2018-10-05</p>
+                            <p th:text="${#dates.format(temp.orderTime,'yyyy-MM-dd HH:mm:ss')}">2018-10-05</p>
                         </li>
                         <li>
                             <div class="c_4">总金币</div>
-                            <span class="num_1" th:text="${temp.servicePrice}">222.0</span>
+                            <span class="num_1" th:text="${temp.totalPrice}">222.0</span>
                         </li>
 						<li>
                             <div class="c_4">服务类别</div>
@@ -132,7 +132,7 @@
 						</li>
 						<li class="cel_l5" th:switch="${temp.orderStatus}">
 						<span th:case="1">
- 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">支付金币</a><br><a href="javascript:;" th:onclick="|quxiao(${temp.orderID})|">取消服务</a><br>
+ 						<a th:href="@{/c/getOrdersByoid?(oid=${temp.orderID})}" class="btna_s1">支付金币</a><br><a href="javascript:;" th:onclick="|quxiao(${temp.orderID})|">取消服务</a><br>
  						</span>
  						<span th:case="2">
  						<span style="color:#FF8C00;font-weight: bold;">等待商家接单</span>

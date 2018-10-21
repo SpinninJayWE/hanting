@@ -15,6 +15,8 @@ public class Advertisement {
 
     private String aappurl;
 
+    private Float price;
+
     private String adescribe;
 
     public Integer getAid() {
@@ -71,6 +73,14 @@ public class Advertisement {
 
     public void setAappurl(String aappurl) {
         this.aappurl = aappurl == null ? null : aappurl.trim();
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
     public String getAdescribe() {

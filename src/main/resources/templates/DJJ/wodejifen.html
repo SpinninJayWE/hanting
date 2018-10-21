@@ -17,7 +17,7 @@
 				<a href="javascript:void(0);">联系我们</a></div>
 			
 			<div class="top_right login_right">
-				<a th:href="@{/c/Gerenzx}">[[${session.USER.uesr.username}]]</a>
+				<a th:href="@{/c/Gerenzx}">[[${session.USER.user.username}]]</a>
 				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
             	<span class="ht_line"></span><a href="javascript:void(0);"><img src="./images/e_i.png" alt=""></a>
 			</div>
@@ -48,7 +48,7 @@
             	<li><a href="wodexiazai.html"><span class="msp2 pre_c2"></span>我的下载</a></li>
                 <li><a href="javascript:void(0);"><span class="msp2 community_sp csp7"></span>我的帖子</a></li>
                 <li><a th:href="@{/c/getAllMyServiceCollection?num=1&size=3}"><span class="msp2 pre_c3"></span>我的收藏</a></li>
-                <li><a href="wodejinbi.html"><span class="msp2 pre_c4"></span>我的金币</a></li>
+                <li><a th:href="@{/c/getMyGoldnotes?num=1&size=3}"><span class="msp2 pre_c4"></span>我的金币</a></li>
                 <li><a href="javascript:void(0)"><span class="msp2 pre_c5"></span>我的积分</a></li>
                 <li><a href="wodepingjia.html"><span class="msp2 pre_c6"></span>我的评价</a></li>
                 <li><a href="wodetuikuan.html"><span class="msp2 pre_c7"></span>我的退款</a></li>
@@ -65,7 +65,7 @@
 				</div>
 				<span class="fl">我的积分</span>
                 <ul class="fl pre_uul">
-                    <li><span class="prus psi1">可用积分</span>[[${session.USER.uesr.userintegral}]]</li>
+                    <li><span class="prus psi1">可用积分</span>[[${session.USER.user.userintegral}]]</li>
                 </ul>
 			</div>
 
@@ -77,8 +77,8 @@
                     <th>描述</th>
                 </tr>
                 <tr th:each="temp,iterState :${ing.list}">
-                	<td><span class="c_4" th:text="${temp.irdate}">2018-08-31</span></td>
-                    <td style="color: green;">+<span class="c_5" th:text="${temp.recordinandout}">+10.00</span></td>
+                	<td><span class="c_4" th:text="${#dates.format(temp.irdate,'yyyy-MM-dd HH:mm:ss')}">2018-08-31</span></td>
+                    <td style="color: green;"><span class="c_5" th:text="${temp.recordinandout}"></span></td>
                     <td th:text="${temp.irdescribe}">签到</td>
                 </tr>
                 </tbody></table>

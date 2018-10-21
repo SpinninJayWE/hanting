@@ -12,6 +12,15 @@ public class ServiceCollectionVo {
 	    private String serviceCoverImg;
 	    private Integer servicePrice;
 	    private String stName;
+	    private Float totalPrice;
+	    
+	    
+		public Float getTotalPrice() {
+			return totalPrice;
+		}
+		public void setTotalPrice(Float totalPrice) {
+			this.totalPrice = totalPrice;
+		}
 		public Integer getSercolleid() {
 			return sercolleid;
 		}

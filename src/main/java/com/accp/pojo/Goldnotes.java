@@ -62,4 +62,21 @@ public class Goldnotes {
     public void setAuditstatus(Integer auditstatus) {
         this.auditstatus = auditstatus;
     }
+    
+    public Goldnotes() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Goldnotes(Integer recordid, Integer userid, Date recorddate, String recorddescribe, Float recordinandout,
+			Integer auditstatus) {
+		super();
+		this.recordid = recordid;
+		this.userid = userid;
+		this.recorddate = recorddate;
+		this.recorddescribe = recorddescribe;
+		this.recordinandout = recordinandout;
+		this.auditstatus = auditstatus;
+	}
+    
+    
 }
