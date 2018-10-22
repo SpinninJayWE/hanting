@@ -14,6 +14,7 @@ import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
 import com.accp.pojo.Orders;
+import com.accp.vo.DJJ.EvaluationOrService;
 import com.accp.vo.DJJ.MyServiceCollCetionType;
 import com.accp.vo.DJJ.OrdersStateNumber;
 import com.accp.vo.DJJ.ServiceCollectionVo;
@@ -117,6 +118,11 @@ public class HanTingBiz {
 	
 	public void updateOrdercommentstatusByOid(String oid,int State) {
 		dao.updateOrdercommentstatusByOid(oid,State);
+	}
+	
+	public List<EvaluationOrService> findMyEvaluationByusid(Integer usid){
+	return dao.queryMyEvaluationByusid(usid);	
+		
 	}
 	
 

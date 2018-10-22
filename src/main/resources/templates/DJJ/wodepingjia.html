@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>我的评价_韩汀社区</title>
 <link href="../css/common.css" rel="stylesheet"><!--该页面的所有css-->
@@ -17,7 +17,7 @@
 				<a href="javascript:void(0);">联系我们</a></div>
 			
 			<div class="top_right login_right">
-				<a href="javascript:void(0);">@小北墩</a>
+				<a href="/c/Gerenzx">[[${session.USER.user.username}]]</a>
 				<span class="ht_line"></span><a href="javascript:void(0);">退出</a>
             	<span class="ht_line"></span><a href="javascript:void(0);"><img src="./images/e_i.png" alt=""></a>
 			</div>
@@ -44,13 +44,13 @@
         <div class="member_left">
         	<h1 class="member_left_title">个人中心</h1>
             <ul class="member_system_ul">
-            	<li><a href="wodeyuding.html"><span class="msp2 pre_c1"></span>我预订的服务</a></li>
+            	<li><a th:href="@{/c/getAllMyOrders?num=1&size=3}"><span class="msp2 pre_c1"></span>我预订的服务</a></li>
             	<li><a href="wodexiazai.html"><span class="msp2 pre_c2"></span>我的下载</a></li>
                 <li><a href="javascript:void(0);"><span class="msp2 community_sp csp7"></span>我的帖子</a></li>
-                <li><a href="wodeshoucang.html"><span class="msp2 pre_c3"></span>我的收藏</a></li>
-                <li><a href="wodejinbi.html"><span class="msp2 pre_c4"></span>我的金币</a></li>
-                <li><a href="wodejifen.html"><span class="msp2 pre_c5"></span>我的积分</a></li>
-                <li><a href="wodepingjia.html"><span class="msp2 pre_c6"></span>我的评价</a></li>
+                <li><a th:href="@{/c/getAllMyServiceCollection?num=1&size=3}"><span class="msp2 pre_c3"></span>我的收藏</a></li>
+                <li><a th:href="@{/c/getMyGoldnotes?num=1&size=3}"><span class="msp2 pre_c4"></span>我的金币</a></li>
+                <li><a th:href="@{/c/getAllMyJifenRecord?num=1&size=3}"><span class="msp2 pre_c5"></span>我的积分</a></li>
+                <li><a th:href="@{/c/getMyEvaluationByusid}"><span class="msp2 pre_c6"></span>我的评价</a></li>
                 <li><a href="wodetuikuan.html"><span class="msp2 pre_c7"></span>我的退款</a></li>
 				<li><a href="wodewuliu.html"><span class="msp2 pre_c8"></span>我的物流</a></li>                
 				<li><a target="_blank" href="javascript:void(0);"><span class="msp2 pre_c9"></span>帮助中心</a></li>
@@ -63,12 +63,12 @@
 				我的评价
 			</div>
             <ul class="my_evaluation_list">
-                <li>
-                    <p class="my_evaluation_img"><img src="./我的评价_韩汀社区_files/20180920110531-38833.jpg" alt="学习资料"></p>
+                <li th:each="temp,iterState :${evas}">
+                    <p class="my_evaluation_img"><img th:src="|../images/${temp.serviceCoverImg}|" alt="学习资料"></p>
                     <p class="date_p fr"> </p>
                     <div class="my_evaluation_text">
-                        <h3 class="bbs_text_title c_4">评论了<a href="http://yphting.zglxkj.com/index.php/Home/Index/go/id/566.html">学习资料</a></h3>
-                                                <p class="pt_text2">321321</p>
+                        <h3 class="bbs_text_title c_4">评论了<a href="javascript:void(0)" th:text="${temp.serviceTitle}">学习资料</a></h3>
+                                                <p class="pt_text2" th:text="${temp.serviceAppraiseContent}">321321</p>
 						                    </div>
                 </li>			</ul>
             <!--page-->

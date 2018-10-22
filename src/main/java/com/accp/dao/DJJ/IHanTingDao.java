@@ -10,6 +10,7 @@ import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
 import com.accp.pojo.Orders;
 import com.accp.pojo.Service;
+import com.accp.vo.DJJ.EvaluationOrService;
 import com.accp.vo.DJJ.MyServiceCollCetionType;
 import com.accp.vo.DJJ.OrdersStateNumber;
 import com.accp.vo.DJJ.ServiceCollectionVo;
@@ -56,4 +57,6 @@ public interface IHanTingDao {
 	public void addEvaluationService(@Param("eva")Evaluationservice eva);
 	
 	public void updateOrdercommentstatusByOid(@Param("oid")String oid,@Param("State")int state);
+	
+	public List<EvaluationOrService> queryMyEvaluationByusid(@Param("usid")Integer usid);
 }

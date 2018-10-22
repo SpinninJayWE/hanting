@@ -24,6 +24,7 @@ import com.accp.pojo.Integralrecord;
 import com.accp.pojo.Login;
 import com.accp.pojo.Orders;
 import com.accp.pojo.Service;
+import com.accp.vo.DJJ.EvaluationOrService;
 import com.accp.vo.DJJ.MyServiceCollCetionType;
 import com.accp.vo.DJJ.OrdersStateNumber;
 import com.accp.vo.DJJ.ServiceCollectionVo;
@@ -280,6 +281,15 @@ public class HanTingAction {
 		
 		return message;
 		
+		
+	}
+	
+	@GetMapping("getMyEvaluationByusid")
+	public String MyEvaluationByusid(HttpSession session,Model model) {
+		Login lo = (Login) session.getAttribute("USER");
+		List<EvaluationOrService> evas= biz.findMyEvaluationByusid(lo.getUserid());
+		model.addAttribute("evas",evas);
+		return "DJJ/wodepingjia";
 		
 	}
 	
