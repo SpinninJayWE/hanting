@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 import com.accp.dao.DJJ.IHanTingDao;
+import com.accp.pojo.Evaluationservice;
 import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
@@ -104,6 +105,18 @@ public class HanTingBiz {
 	
 	public int findGoldNoteMaxRecordId() {
 		return dao.queryMaxgoldrecordId();
+	}
+	
+	public ordersServicesServiceTypeVo findOrdersServicesSTypeByoid(String oid) {
+		return dao.querymyOrdersByOid(oid);
+	}
+	
+	public void addEvaluationService(Evaluationservice eva) {
+		 dao.addEvaluationService(eva);
+	}
+	
+	public void updateOrdercommentstatusByOid(String oid,int State) {
+		dao.updateOrdercommentstatusByOid(oid,State);
 	}
 	
 

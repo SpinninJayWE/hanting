@@ -1,5 +1,7 @@
 package com.accp.pojo;
 
+import java.util.List;
+
 public class Login {
     private Integer loginid;
 
@@ -17,7 +19,9 @@ public class Login {
     
     
 
-    public User getUser() {
+  
+
+	public User getUser() {
 		return user;
 	}
 

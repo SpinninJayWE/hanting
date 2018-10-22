@@ -97,4 +97,22 @@ a.serviceID=b.serviceID AND b.userid=c.userid AND b.stid=d.stid AND a.userid=#{u
 	<select id="queryMaxgoldrecordId" resultType="int">
 	SELECT MAX(recordID)FROM goldnotes
 	</select>
+	<!-- 查询订单以及关联的服务和商家信息通过订单ID -->
+	<select id="querymyOrdersByOid" resultType="com.accp.vo.DJJ.ordersServicesServiceTypeVo">
+		SELECT * FROM orders,services,`user`,servicetype WHERE 
+	orders.`serviceID`=services.`serviceID` AND 
+	servicetype.`stid`=services.`stid` AND 
+	services.`userID`=user.`userID` AND
+	orders.`orderID`=#{oid}	
+	</select>
+	
+	<select id="addEvaluationService">
+	INSERT INTO evaluationservice(serviceID,userID,serviceAppraiseContent,serviceAppraiseDate,serviceAppraiseLevel,serviceAppraisePID)
+	VALUE(#{eva.serviceid},#{eva.userid},#{eva.serviceappraisecontent},NOW(),#{eva.serviceappraiselevel},#{eva.serviceappraisepid});
+	</select>
+	
+	<update id="updateOrdercommentstatusByOid">
+	UPDATE orders SET commentstatus=#{State} WHERE orderID=#{oid}
+	</update>
+	
 </mapper>

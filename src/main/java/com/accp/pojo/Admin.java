@@ -25,7 +25,11 @@ public class Admin {
 
     private Date creationtime;
 
+    private String creationip;
+
     private String founder;
+
+    private Date recententry;
 
     private String ip;
 
@@ -117,12 +121,28 @@ public class Admin {
         this.creationtime = creationtime;
     }
 
+    public String getCreationip() {
+        return creationip;
+    }
+
+    public void setCreationip(String creationip) {
+        this.creationip = creationip == null ? null : creationip.trim();
+    }
+
     public String getFounder() {
         return founder;
     }
 
     public void setFounder(String founder) {
         this.founder = founder == null ? null : founder.trim();
+    }
+
+    public Date getRecententry() {
+        return recententry;
+    }
+
+    public void setRecententry(Date recententry) {
+        this.recententry = recententry;
     }
 
     public String getIp() {

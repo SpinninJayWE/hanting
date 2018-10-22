@@ -99,8 +99,9 @@
                         <li>
                             <div class="c_4" style="text-align:center;">商家状态</div>
                             <span th:switch="${temp.businessState}" style="text-align:center;margin-left:42px;color:#959595;">
-                            	<span th:case="0">营业中</span>
-                            	<span th:case="1">未开业</span>
+                            	<span th:case="1">营业中</span>
+                            	<span th:case="2">未开业</span>
+                            	<span th:case="3">关闭</span>
                             </span>
                         </li>
                         <li class="last" style="width:200px;">
@@ -125,8 +126,8 @@
                         <li class="cel_l4" th:switch="${temp.orderStatus}">
 						<span th:case="1">待付款</span>
 						<span th:case="2">待接单</span>	
-						<span th:case="3">待确定</span>	
-						<span th:case="4">待评价</span>
+						<span th:case="3">待服务</span>	
+						<span th:case="4">已提供服务</span>
 						<span th:case="5">完成</span>
 						<span th:case="6">已取消</span>						
 						</li>
@@ -138,12 +139,16 @@
  						<span style="color:#FF8C00;font-weight: bold;">等待商家接单</span>
  						</span>
  						<span th:case="3">
- 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">确认收货</a>
+ 						<span style="color: green;" >商家已接单，等待服务提供</span>
  						</span>
  						<span th:case="4">
- 						<a href="http://yphting.zglxkj.com/index.php/Home/Payment/order/oid/100451.html" class="btna_s1">评价</a>
+ 						<a href="#">服务已提供</a>
+ 						<a href="javascript:void(0)" class="btna_s1 qrsh" th:onclick="|qrsh(${temp.orderID})|">确认收货</a>
  						</span>
- 						<span th:case="5">
+ 						<span th:if="${temp.orderStatus==5&&temp.commentstatus==1}">
+ 						<a th:href="@{/c/getOrderByoid?(oid=${temp.orderID})}" class="btna_s1">评价</a>
+ 						</span>
+ 						<span th:if="${temp.orderStatus==5&&temp.commentstatus!=1}">
  						<span style="color: green;">订单已完成</span>
  						</span>
  						<span th:case="6">
@@ -401,6 +406,30 @@
 
 </body>
 <script type="text/javascript">
+		
+		
+			function qrsh(oid){
+				if(window.confirm("您要确认收货吗？")){
+					$.ajax("/c/updateMyOrderState?state="+5+"&oid="+oid,{
+						type:"post",
+						contentType:"application/json",
+						dataType:"json",
+						success:function(json){
+							if(json.code==200){
+								alert("确认成功");
+								window.location.reload();
+							}else{
+								alert("确认失败");
+							
+							}
+							
+						}
+					});
+					
+				}
+				
+			}
+			
 		
 		
 			$(".s_sec_btn").click(function(){

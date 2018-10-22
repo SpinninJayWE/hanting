@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.accp.pojo.Evaluationservice;
 import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
@@ -49,4 +50,10 @@ public interface IHanTingDao {
 	public int addGoldNote(@Param("Gold") Goldnotes Gold);
 	
 	public int queryMaxgoldrecordId();
+	
+	public ordersServicesServiceTypeVo querymyOrdersByOid(@Param("oid") String oid);
+	
+	public void addEvaluationService(@Param("eva")Evaluationservice eva);
+	
+	public void updateOrdercommentstatusByOid(@Param("oid")String oid,@Param("State")int state);
 }

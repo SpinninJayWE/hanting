@@ -15,6 +15,8 @@ public class Services {
 
     private String servicefutitle;
 
+    private String downloadtitle;
+
     private Integer serviceprice;
 
     private String servicecoverimg;
@@ -117,6 +119,14 @@ public class Services {
 
     public void setServicefutitle(String servicefutitle) {
         this.servicefutitle = servicefutitle == null ? null : servicefutitle.trim();
+    }
+
+    public String getDownloadtitle() {
+        return downloadtitle;
+    }
+
+    public void setDownloadtitle(String downloadtitle) {
+        this.downloadtitle = downloadtitle == null ? null : downloadtitle.trim();
     }
 
     public Integer getServiceprice() {

@@ -11,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accp.biz.DJJ.HanTingBiz;
+import com.accp.pojo.Evaluationservice;
 import com.accp.pojo.Goldnotes;
 import com.accp.pojo.Integral;
 import com.accp.pojo.Integralrecord;
@@ -200,6 +202,7 @@ public class HanTingAction {
 	@GetMapping("getMyGoldnotes")
 	public String getMyGoldnotes(int num,int size,Model model,HttpSession session) {
 		Login lo = (Login) session.getAttribute("USER");
+		System.out.println(num+"/"+size);
 		PageInfo<Goldnotes> goldnotes = biz.findMyGoldnotes(lo.getUserid(), num, size);
 		model.addAttribute("goldnotes",goldnotes);
 		
@@ -212,7 +215,7 @@ public class HanTingAction {
 	public Map<String ,Object> addGoldNote(String recordDescribe,Float recordInAndOut,int auditStatus,HttpSession session){
 		Map<String,Object> message=new HashMap<String,Object>();
 		Login lo = (Login) session.getAttribute("USER");
-		Goldnotes gold =new Goldnotes(0, lo.getUserid(), null, recordDescribe, recordInAndOut, auditStatus);
+		Goldnotes gold =new Goldnotes(0, lo.getUserid(), 1,null, recordDescribe, recordInAndOut, auditStatus);
 		int count = biz.addGoldNote(gold);
 		if(count>0) {
 			message.put("code", "200");
@@ -230,6 +233,54 @@ public class HanTingAction {
 		Login lo = (Login) session.getAttribute("USER");
 		
 		return "DJJ/jinb-index";
+	}
+	
+	@GetMapping("getOrderByoid")
+	public String getOrderByoid(String oid,Model model) {
+		ordersServicesServiceTypeVo ordervo = biz.findOrdersServicesSTypeByoid(oid);
+		
+		model.addAttribute("Ordervo",ordervo);
+		
+		return "DJJ/fabupingjia";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="addEvaluationService",method=RequestMethod.POST)
+	public Map<String,Object> addEvaluationService(@RequestBody Evaluationservice eva)throws Exception{
+		Map<String,Object> message=new HashMap<String,Object>();
+		
+		try {
+			biz.addEvaluationService(eva);
+			message.put("code", "200");
+			message.put("msg", "服务评价成功");
+		} catch (Exception e) {
+			message.put("code", "500");
+			message.put("msg", "服务评价失败");
+		}
+		
+
+		
+		return message;
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="updateOrdercommentstatusByOid",method=RequestMethod.POST)
+	public Map<String,Object> updateOrdercommentstatusByOid(String oid,int state)throws Exception{
+		Map<String,Object> message=new HashMap<String,Object>();
+		
+		try {
+			biz.updateOrdercommentstatusByOid(oid,state);
+			message.put("code", "200");
+			message.put("msg", "订单评价状态修改成功");
+		} catch (Exception e) {
+			message.put("code", "500");
+			message.put("msg", "订单评价状态修改失败");
+		}
+		
+		return message;
+		
+		
 	}
 	
 

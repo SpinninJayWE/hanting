@@ -170,7 +170,7 @@ public class AlipayZsbAction {// response
 		//获得初始化的AlipayClient
 		System.out.println("扣除金钱"+recordinandout);
 		Login lo = (Login) session.getAttribute("USER");
-		Goldnotes goldnotes = new Goldnotes(0, lo.getUserid(), null, "通过支付宝充值", +recordinandout, 2);
+		Goldnotes goldnotes = new Goldnotes(0, lo.getUserid(), 5,null, "通过支付宝充值", +recordinandout, 2);
 		AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
 		biz.addGoldNote(goldnotes);
 		System.out.println(goldnotes.getRecordid());

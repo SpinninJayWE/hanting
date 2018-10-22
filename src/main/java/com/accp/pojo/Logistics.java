@@ -29,6 +29,8 @@ public class Logistics {
 
     private String userphone;
 
+    private String username;
+
     private String useraddr;
 
     private String collectgoods;
@@ -163,6 +165,14 @@ public class Logistics {
 
     public void setUserphone(String userphone) {
         this.userphone = userphone == null ? null : userphone.trim();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getUseraddr() {

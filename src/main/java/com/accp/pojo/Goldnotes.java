@@ -7,6 +7,8 @@ public class Goldnotes {
 
     private Integer userid;
 
+    private Integer acquisitionmode;
+
     private Date recorddate;
 
     private String recorddescribe;
@@ -14,8 +16,28 @@ public class Goldnotes {
     private Float recordinandout;
 
     private Integer auditstatus;
+    
+    
 
-    public Integer getRecordid() {
+    
+
+	public Goldnotes(Integer recordid, Integer userid, Integer acquisitionmode, Date recorddate, String recorddescribe,
+			Float recordinandout, Integer auditstatus) {
+		super();
+		this.recordid = recordid;
+		this.userid = userid;
+		this.acquisitionmode = acquisitionmode;
+		this.recorddate = recorddate;
+		this.recorddescribe = recorddescribe;
+		this.recordinandout = recordinandout;
+		this.auditstatus = auditstatus;
+	}
+	
+	public Goldnotes() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getRecordid() {
         return recordid;
     }
 
@@ -29,6 +51,14 @@ public class Goldnotes {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    public Integer getAcquisitionmode() {
+        return acquisitionmode;
+    }
+
+    public void setAcquisitionmode(Integer acquisitionmode) {
+        this.acquisitionmode = acquisitionmode;
     }
 
     public Date getRecorddate() {
@@ -62,21 +92,4 @@ public class Goldnotes {
     public void setAuditstatus(Integer auditstatus) {
         this.auditstatus = auditstatus;
     }
-    
-    public Goldnotes() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Goldnotes(Integer recordid, Integer userid, Date recorddate, String recorddescribe, Float recordinandout,
-			Integer auditstatus) {
-		super();
-		this.recordid = recordid;
-		this.userid = userid;
-		this.recorddate = recorddate;
-		this.recorddescribe = recorddescribe;
-		this.recordinandout = recordinandout;
-		this.auditstatus = auditstatus;
-	}
-    
-    
 }

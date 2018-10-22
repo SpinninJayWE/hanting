@@ -9,6 +9,8 @@ public class Orders {
 
     private Integer serviceid;
 
+    private Integer resouroeid;
+
     private Integer ordertype;
 
     private Date ordertime;
@@ -45,6 +47,14 @@ public class Orders {
 
     private Integer orderstatus;
 
+    private Integer commentstatus;
+
+    private Integer refundstatus;
+
+    private Integer filesatus;
+
+    private String documentpath;
+
     private String remarks;
 
     public String getOrderid() {
@@ -69,6 +79,14 @@ public class Orders {
 
     public void setServiceid(Integer serviceid) {
         this.serviceid = serviceid;
+    }
+
+    public Integer getResouroeid() {
+        return resouroeid;
+    }
+
+    public void setResouroeid(Integer resouroeid) {
+        this.resouroeid = resouroeid;
     }
 
     public Integer getOrdertype() {
@@ -213,6 +231,38 @@ public class Orders {
 
     public void setOrderstatus(Integer orderstatus) {
         this.orderstatus = orderstatus;
+    }
+
+    public Integer getCommentstatus() {
+        return commentstatus;
+    }
+
+    public void setCommentstatus(Integer commentstatus) {
+        this.commentstatus = commentstatus;
+    }
+
+    public Integer getRefundstatus() {
+        return refundstatus;
+    }
+
+    public void setRefundstatus(Integer refundstatus) {
+        this.refundstatus = refundstatus;
+    }
+
+    public Integer getFilesatus() {
+        return filesatus;
+    }
+
+    public void setFilesatus(Integer filesatus) {
+        this.filesatus = filesatus;
+    }
+
+    public String getDocumentpath() {
+        return documentpath;
+    }
+
+    public void setDocumentpath(String documentpath) {
+        this.documentpath = documentpath == null ? null : documentpath.trim();
     }
 
     public String getRemarks() {

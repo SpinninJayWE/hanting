@@ -15,16 +15,63 @@ public class ordersServicesServiceTypeVo {
 	private String serviceFuTitle;
 	private int servicePrice;
 	private String serviceCoverImg;
+	private Integer serviceid;
 	private String stName;
 	private String userName;
+	private Integer number;
 	private String userRealName;
 	private String shopName;
 	private int businessState;
 	private Float totalPrice;
+	private Integer commentstatus;
+
+    private Integer refundstatus;
+
+    private Integer filesatus;
+
+    private String documentpath;
+    
+    
 	
 	
 	
 	
+	public Integer getServiceid() {
+		return serviceid;
+	}
+	public void setServiceid(Integer serviceid) {
+		this.serviceid = serviceid;
+	}
+	public Integer getNumber() {
+		return number;
+	}
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+	public Integer getCommentstatus() {
+		return commentstatus;
+	}
+	public void setCommentstatus(Integer commentstatus) {
+		this.commentstatus = commentstatus;
+	}
+	public Integer getRefundstatus() {
+		return refundstatus;
+	}
+	public void setRefundstatus(Integer refundstatus) {
+		this.refundstatus = refundstatus;
+	}
+	public Integer getFilesatus() {
+		return filesatus;
+	}
+	public void setFilesatus(Integer filesatus) {
+		this.filesatus = filesatus;
+	}
+	public String getDocumentpath() {
+		return documentpath;
+	}
+	public void setDocumentpath(String documentpath) {
+		this.documentpath = documentpath;
+	}
 	public Float getTotalPrice() {
 		return totalPrice;
 	}
