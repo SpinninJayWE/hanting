@@ -107,14 +107,14 @@
                         <li class="last" style="width:200px;">
                             <div class="yy_code"><span class="c_4">预订编号</span><span th:text="${temp.orderID}">15374327157820</span></div>
 							<p>
-							<a href="http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100490.html">查看详细</a>							<span class="ht_line2"></span>
+							<a th:href="@{/c/getOrderOrServicesByoid?(oid=${temp.orderID})}">查看详细</a>							<span class="ht_line2"></span>
 								<a href="javascript:;" onclick="showmsg(this)" rel="275">站内信商家</a>							</p>
                         </li>
                     </ul>
                 </div>
                 <div class="book_bt">
                 	<ul class="book_bt_ul">
-                    	<li class="cel_l1"><img width="135" height="90" th:src="|../images/${temp.serviceCoverImg}|" alt=""></li>
+                    	<li class="cel_l1"><img width="135" height="90" th:src="|/images/${temp.serviceCoverImg}|" alt=""></li>
                         <li class="cel_l2">
                             <div class="yd_xm_title"><a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/566.html" target="_blank" th:text="${temp.serviceTitle}">学习资料</a></div>
                             <p th:text="${temp.serviceFuTitle}">学习资料</p>                            <p>
@@ -142,14 +142,21 @@
  						<span style="color: green;" >商家已接单，等待服务提供</span>
  						</span>
  						<span th:case="4">
- 						<a href="#">服务已提供</a>
- 						<a href="javascript:void(0)" class="btna_s1 qrsh" th:onclick="|qrsh(${temp.orderID})|">确认收货</a>
+ 						<a href="javascript:void(0)" download="20181023015933-99578.docx" class="btna_s3 mt5">下载</a>
+ 						<a href="javascript:void(0)" class="btna_s3 mt5 qrsh" th:onclick="|qrsh(${temp.orderID})|">确认收货</a>
  						</span>
  						<span th:if="${temp.orderStatus==5&&temp.commentstatus==1}">
- 						<a th:href="@{/c/getOrderByoid?(oid=${temp.orderID})}" class="btna_s1">评价</a>
+ 						<a href="javascript:void(0)" download="20181023015933-99578.docx" class="btna_s3 mt5">下载</a>
+ 						<a th:href="@{/c/getOrderByoid?(oid=${temp.orderID})}" class="btna_s3 mt5">评价</a>
+ 						<br/>
+ 						<a href="javascript:void(0)">申请退款</a>
  						</span>
  						<span th:if="${temp.orderStatus==5&&temp.commentstatus!=1}">
- 						<span style="color: green;">订单已完成</span>
+ 						<a href="javascript:void(0)" download="20181023015933-99578.docx" class="btna_s3 mt5">下载</a>
+ 						<br/>
+ 						<span class="c_4">已评价</span>
+ 						<br/>
+ 						<a href="javascript:void(0)">申请退款</a>
  						</span>
  						<span th:case="6">
  						<span style="color: red;">订单已取消</span>

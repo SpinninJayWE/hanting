@@ -77,7 +77,7 @@ public class HanTingBiz {
 		return count;
 	}
 	
-	public int updateMyOrderState(int state,int oid) {
+	public int updateMyOrderState(int state,String oid) {
 		int count = dao.updateOrderState(state, oid);
 		return count;
 	}
@@ -123,6 +123,10 @@ public class HanTingBiz {
 	public List<EvaluationOrService> findMyEvaluationByusid(Integer usid){
 	return dao.queryMyEvaluationByusid(usid);	
 		
+	}
+	
+	public void updateOrderspaymentTimeByoid(String oid) {
+		 dao.updateOrderspaymentTimeByoid(oid);
 	}
 	
 

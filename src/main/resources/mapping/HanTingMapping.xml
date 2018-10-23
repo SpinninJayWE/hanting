@@ -119,4 +119,8 @@ a.serviceID=b.serviceID AND b.userid=c.userid AND b.stid=d.stid AND a.userid=#{u
 	SELECT * FROM evaluationservice e,services s WHERE e.`serviceID`=s.`serviceID` AND e.`userID`=#{usid}
 	</select>
 	
+	<update id="updateOrderspaymentTimeByoid">
+	UPDATE orders SET  paymentTime=NOW() WHERE orderID=#{oid}
+	</update>
+	
 </mapper>

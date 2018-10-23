@@ -38,7 +38,7 @@ public interface IHanTingDao {
 	
 	public int deleteMyServicecollection(@Param("sercolleid") int sercolleid);
 	
-	public int updateOrderState(@Param("State")int State,@Param("oid")int oid);
+	public int updateOrderState(@Param("State")int State,@Param("oid")String oid);
 	
 	public List<MyServiceCollCetionType> queryMyServiceCollEctionType(@Param("usid")int usid);
 	
@@ -59,4 +59,6 @@ public interface IHanTingDao {
 	public void updateOrdercommentstatusByOid(@Param("oid")String oid,@Param("State")int state);
 	
 	public List<EvaluationOrService> queryMyEvaluationByusid(@Param("usid")Integer usid);
+	
+	public void updateOrderspaymentTimeByoid(@Param("oid")String oid);
 }

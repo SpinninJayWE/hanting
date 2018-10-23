@@ -157,10 +157,11 @@ public class HanTingAction {
 	
 	@ResponseBody
 	@RequestMapping(value="updateMyOrderState",method=RequestMethod.POST)
-	public Map<String ,Object> updateMyOrderState(int state,int oid){
+	public Map<String ,Object> updateMyOrderState(int state,String oid)throws Exception{
 		Map<String,Object> message=new HashMap<String,Object>();
 		int count = biz.updateMyOrderState(state, oid);
 		if(count>0) {
+			biz.updateOrderspaymentTimeByoid(oid);
 			message.put("code", "200");
 			message.put("msg", "成功修改状态");
 		}else {
@@ -243,6 +244,14 @@ public class HanTingAction {
 		model.addAttribute("Ordervo",ordervo);
 		
 		return "DJJ/fabupingjia";
+	}
+	
+	@GetMapping("getOrderOrServicesByoid")
+	public String getOrderOrServicesByoid(String oid,Model model) {
+		ordersServicesServiceTypeVo ordervo = biz.findOrdersServicesSTypeByoid(oid);
+		model.addAttribute("ordervo",ordervo);
+		
+		return "DJJ/MyYudinXq";
 	}
 	
 	@ResponseBody

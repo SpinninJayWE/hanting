@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100587.html -->
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<meta http-equiv="cleartype" content="on">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta content="telephone=no" name="format-detection" />-->	    
+<title>我预订的服务_韩汀社区</title>
+<link rel="shortcut icon" href="http://yphting.zglxkj.com/Public/images/favicon.ico" type="image/x-icon">
+<link href="../css/common.css" rel="stylesheet">
+
+<script>
+_weburl = 'http://yphting.zglxkj.com';
+</script>
+<meta property="wb:webmaster" content="1a0bb5a2cb580b9f">
+<meta name="__hash__" content="abcdcccbff24fb7c00be7f86fe69a749_31addec12d5e9b96ba84d57aa48fe2ec"></head>
+<body>
+
+<style type="text/css">
+	.btna_s3,.btna_s1{ margin-bottom: 10px;}
+	.btna_s2{ display: inline-block;    margin-bottom: 10px;}
+	.c_4{ display: inline-block;    margin-bottom: 10px;}
+</style>
+
+<!--header-->
+<div class="header" id="botop">
+		<div class="h_top">
+		<div class="b_box">
+			<div class="top_nav"><a href="http://yphting.zglxkj.com/index.php/">首页</a><span class="ht_line"></span><a href="http://yphting.zglxkj.com/index.php/Home/Member/seller.html">商家入驻</a><span class="ht_line"></span><a href="http://yphting.zglxkj.com/index.php/Home/About/help.html">帮助中心</a><span class="ht_line"></span><a href="http://yphting.zglxkj.com/index.php/Home/About/index.html">关于韩汀</a><span class="ht_line"></span><a href="http://yphting.zglxkj.com/index.php/Home/About/contact.html">联系我们</a></div>
+			
+			<div class="top_right login_right">
+						<a th:href="@{/c/Gerenzx}">[[${session.USER.user.username}]]</a>
+						<span class="ht_line"></span><a href="http://yphting.zglxkj.com/index.php/Home/Member/logout.html">退出</a>
+            <span class="ht_line"></span><a href="http://yphting.zglxkj.com/index.php/Home/Member/sms.html"><img src="../images/e_i.png" alt=""><span class="e_if"></span></a>
+			</div>
+		</div>
+	</div>
+
+    <div class="b_box nav_header community_header">
+		<a class="logo my_logo" href="http://yphting.zglxkj.com/index.php/Home/Index/index.html">御品韩汀</a>
+		<ul class="member_nav_ul">
+        	<li id="li1"><a href="http://yphting.zglxkj.com/index.php/Home/Seller/index.html">商家中心</a><span class="my_nav_i"></span></li>
+<style type="text/css">
+.layui-layer-btn .layui-layer-btn0{ background:#4c1b98; }
+.layui-layer-btn .layui-layer-btn0:hover{ background:#340d6f;}
+</style>        	<li class="cur" id="li2"><a href="http://yphting.zglxkj.com/index.php/Home/Member/index.html">个人中心</a><span class="my_nav_i"></span></li>
+            <li id="li3"><a href="http://yphting.zglxkj.com/index.php/Home/Member/config.html">账户设置</a><span class="my_nav_i"></span></li>
+            <li id="li4"><a href="http://yphting.zglxkj.com/index.php/Home/Member/sms.html">消息<span class="msg_num">2</span></a><span class="my_nav_i"></span></li>
+            
+        </ul>
+	</div>
+</div>
+
+
+<div class="bg_c4 pt1">
+	<div class="b_box">
+    	<div class="sv_path border_c sv_nbor mpt0">
+        	<div class="fr c_4"><a href="http://yphting.zglxkj.com/index.php/Home/About/help/cid/13.html" class="btna_s2 f14">交易须知</a></div>
+            <a href="http://yphting.zglxkj.com/index.php/Home/Member/index.html">个人中心</a><span class="s_sp_v">-</span><a href="http://yphting.zglxkj.com/index.php/Home/Member/order.html">我预订的服务</a>
+        </div>
+        <div class="my_booking_service_top">
+        	<div class="my_booking_left">
+            	<p class="c_4 f14">预定服务状态</p>
+            	<div th:if="${ordervo.orderStatus==1}">
+	                <p class="big_font">
+					待付款				
+					</p>
+					<p class="f12 c_4">请尽快付款以便商家安排时间</p>
+						<div th:if="${session.USER.user.usermoney}>${ordervo.totalPrice}" class="btn_a_mt">
+							<a th:href="@{/c/getOrdersByoid?(oid=${ordervo.orderID})}" class="btna_s1">支付金币</a>
+							<br>
+							<a href="javascript:;" th:onclick="|quxiao(${ordervo.orderID})|">取消服务</a>
+							<br>
+						</div>
+						<div th:if="${session.USER.user.usermoney}<${ordervo.totalPrice}" class="btn_a_mt">
+							<span>您的余额不足，请<a th:href="@{/c/cz}" style="color: #b5118c;">充值</a></span>
+						</div>
+					
+				 </div>
+				 
+				 <div th:if="${ordervo.orderStatus==2}">
+				 	<p class="big_font">
+					待接单				
+					</p>
+					<p class="c_4 dx_text">请耐心等待商家接单，您也可以站内信联系商家</p>
+				 </div>
+				 
+				 <div th:if="${ordervo.orderStatus==3}">
+				 	<p class="big_font">
+					商家已接单				
+					</p>
+					<p>等待商家提供服务...</p>
+				 </div>
+				 
+				  <div th:if="${ordervo.orderStatus==4}">
+				  		<p class="big_font">
+						商家已上传文档			
+						</p>
+						 <div class="btn_a_mt">
+						 <a href="http://yphting.zglxkj.com/Uploads/file/2018-10/20181023085824-50254.docx" class="btna_s3 mt5">下载</a>
+						 <br/>
+						 <a href="javascript:void(0)" class="btna_s3 mt5 qrsh" th:onclick="|qrsh(${ordervo.orderID})|">确认完成</a><br>				 
+					 	</div>
+				  </div>
+				  <div th:if="${ordervo.orderStatus==5&&ordervo.commentstatus==1}">
+				  		<p class="big_font">
+						待评价		
+						</p>
+						 <div class="btn_a_mt">
+						 <a href="http://yphting.zglxkj.com/Uploads/file/2018-10/20181023085824-50254.docx" class="btna_s3 mt5">下载</a><br><a th:href="@{/c/getOrderByoid?(oid=${ordervo.orderID})}" class="btna_s3">评价</a><br><a href="javascript:void(0);">申请退款</a><br>				 
+						 </div>
+				  </div> 
+				  <div th:if="${ordervo.orderStatus==5&&ordervo.commentstatus!=1}">
+				  		<p class="big_font">
+						用户已评	
+						</p>
+						 <div class="btn_a_mt">
+						 <a href="http://yphting.zglxkj.com/Uploads/file/2018-10/20181023085824-50254.docx" class="btna_s3 mt5">下载</a><br><span class="c_4">已评价</span><br/><a href="javascript:void(0);">申请退款</a><br>				 
+						 </div>
+				  </div> 
+				 <!--按钮另一种颜色样式为btna_noc-->
+            </div>
+            <div class="my_booking_right">
+            	<div class="my_book_spress"><span class="my_book_press_line"></span></div>
+            	<ul class="my_booking_service_press_ul">
+                	<li class="cur">
+                    	<span class="mbsp_sp"><span class="mbsp1"></span></span>
+                        <p class="mbsp_text">提交预约</p>
+                    </li>
+                	<li class="cur">
+                    	<span class="mbsp_sp"><span class="mbsp2"></span></span>
+                        <p class="mbsp_text">支付预约</p>
+                    </li>
+                	<li class="cur">
+                    	<span class="mbsp_sp"><span class="mbsp3"></span></span>
+                        <p class="mbsp_text">商家接单</p>
+                    </li>
+                    <li class="cur">
+                    	                    	<span class="mbsp_sp"><span class="mbsp4"></span></span>
+                        <p class="mbsp_text">沟通细节</p>                    </li>
+                    <li class="cur">
+                    	<span class="mbsp_sp"><span class="mbsp5"></span></span>
+                        <p class="mbsp_text">商家提供服务</p>
+                    </li>
+                    <li class="cur">
+                    	<span class="mbsp_sp"><span class="mbsp6"></span></span>
+                        <p class="mbsp_text">服务完成</p>
+                    </li>
+                </ul>
+                            </div>
+        </div>
+        
+        <div class="my_booking_cont">
+        	<ul class="my_booking_cont_ul">
+				<li>
+                    <p class="c_4 f12">订单编号</p>
+                    <p class="mt5" th:text="${ordervo.orderID}">15402556032352</p>
+					<p class="c_4 f12">下单时间</p>
+                    <p class="mt5" th:text="${#dates.format(ordervo.orderTime,'yyyy-MM-dd HH:mm:ss')}">2018-10-23 08:46</p>
+					<div th:if="${ordervo.paymentTime!=null}">
+						<p class="c_4 f12">付款时间</p>
+	                    <p class="mt5" th:text="${#dates.format(ordervo.paymentTime,'yyyy-MM-dd HH:mm:ss')}">2018-10-23 08:46</p>
+	                </div>
+	                <div th:if="${ordervo.receiptTime!=null}">
+	                    <p class="c_4 f12">接单时间</p>
+	                    <p class="mt5" th:text="${ordervo.receiptTime}">2018-10-23 08:57</p>
+	                </div>
+	                <div th:if="${ordervo.provideServicesTime!=null}">			
+	                    <p class="c_4 f12">提供服务时间</p>
+	                    <p class="mt5" th:text="${ordervo.provideServicesTime}">2018-10-23 08:58</p>
+	                </div>
+	                <div th:if="${ordervo.completeTime!=null}">				
+	                    <p class="c_4 f12">完成时间</p>
+	                    <p class="mt5" th:text="${ordervo.completeTime}">2018-10-23 09:11</p> 
+	                </div>                   
+                    <p class="c_4 f12">商家</p>
+                    <p class="mt10"><a target="_blank" href="javascript:void(0)" th:text="${ordervo.shopName}">CaN</a>
+					<a href="javascript:void(0);" class="btna_s2 ml10 send_site_email_btna">站内信商家</a>					</p>
+                    <p class="c_4 f12">总金币</p>
+                    <div class="num_1 f16" th:text="${ordervo.totalPrice}">5.0</div>
+                </li>
+                <li>
+                	<p class="c_4 f12">类别</p>
+                    <p class="mt5" th:text="${ordervo.stName}">韩语翻译</p>					
+                                        <p class="c_4 f12">份数</p>
+                    <p class="mt5" th:text="${ordervo.number}">1</p>					               
+                    
+                </li>
+				
+				<li>
+                	<p class="c_4 f12">所预定服务</p>
+                    <dl class="my_booking_img_text">
+                    	<dt><img th:src="|/images/${ordervo.serviceCoverImg}|" th:alt="${ordervo.serviceTitle}" width="135"></dt>
+                        <dd>
+                        	<p><a href="http://yphting.zglxkj.com/index.php/Home/Service/detail/id/610.html" target="_blank" th:text="${ordervo.serviceTitle}">兰博基尼啊</a></p>
+                            <p></p>
+                            <div class="num_1 num_2_s f14" th:text="${ordervo.servicePrice}">5</div>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        
+	</div>
+</div>
+
+<!--footer-->
+<div class="footer community_footer_dl">
+	<dl class="footer_dl">
+		<dt>
+		<div class="footer_ewm_box"><img src="./我预订的服务_韩汀社区_files/footer_ewm.png" alt=""></div>
+			<span class="ft_ewm_name">御品韩汀</span>
+		</dt>
+		<dd>
+			<p class="flink"><a href="http://yphting.zglxkj.com/index.php/Home/Member/seller.html">商家入驻</a>|<a href="http://yphting.zglxkj.com/index.php/Home/About/help.html">帮助中心</a>|<a href="http://yphting.zglxkj.com/index.php/Home/About/index/key/jobs.html">人才招聘</a>|<a href="http://yphting.zglxkj.com/index.php/Home/About/contact.html">联系我们</a>|<a href="http://yphting.zglxkj.com/index.php/Home/About/sitemap.html">网站地图</a>|<a href="http://yphting.zglxkj.com/index.php/Home/About/terms.html">使用条款</a></p>
+			<p>湘ICP备16017200号-2 | 地址：湖南省株洲市天元区丽景滨江二栋2502号 |网站负责人：夏先生 |   邮编：412000</p>
+
+			<p>官方QQ：3119683838 | 微信公众号：御品韩汀 | 官网邮箱：3119683838@qq.com | 官方热线电话：0731-2286-7673</p>
+
+			<p>Copyright © 2017 - 2018 yphting.com 版权所有</p>		</dd>
+	</dl>
+</div>
+<!--footer end-->
+
+<!--right nav-->
+<ul class="right_nav">
+	<li><a href="javascript:void(0);" class="rn_tel">客服电话</a><div class="over_show kf_tel">0731-2286-7673</div></li>
+	<li><a href="javascript:void(0);" class="rn_wx">官方微信</a><div class="over_show"><img src="./我预订的服务_韩汀社区_files/r_ewm.jpg" alt="" class="gw_ewm"></div></li>
+	<li><a href="tencent://Message/?Uin=3119683838&amp;websiteName=http://yphting.zglxkj.com=&amp;Menu=yes" class="rn_kf">在线客服</a></li>
+	<li><a href="http://yphting.zglxkj.com/index.php/Home/Member/oinfo/id/100587.html#" class="rn_top">Back top</a></li>
+</ul>
+<!--right nav end-->
+
+
+
+<!--联系我们的浮层-->
+<div class="pop_contact">
+	<a href="javascript:void(0);" class="close_pop_contact"></a>
+	<div class="w1000">
+		<div class="pcontact_left">
+			<a href="http://yphting.zglxkj.com/index.php/" class="logo">御品韩汀</a>
+			<ul class="pcontact_ul">
+				<li><div class="wr_linka"><a href="http://yphting.zglxkj.com/"></a></div>公司官网：http://yphting.zglxkj.com</li>
+				<li><div class="wr_linka"><a href="http://weidian.com/?userid=765635894&amp;wfr=c"></a></div>公司微店：http://weidian.com/?userid=765635894&amp;wfr=c</li>
+			</ul>
+			<ul class="pcontact_ul2">
+				<li><span class="pcu pcu1"></span>联系方式：18773382506</li>
+				<li><span class="pcu pcu2"></span>客服电话：0731-2286-7673</li>
+				<li><span class="pcu pcu3"></span>住所：경기도 수원시 영통구 영통동 1021-4 청명타운텔 609호</li>
+				<li class="last"><h3 class="contact_us_h3">CONTACT US</h3>联系我们</li>
+			</ul>
+		</div>
+
+
+
+
+
+<!--站内信 弹框-->
+<div id="pop_bg" style="display:"></div>
+<!--站内信 弹框-->
+<div id="pop_bg"></div>
+<div class="site_email_pop">
+	<a href="javascript:void(0);" class="close_pop_btn"></a>
+	<h2 class="site_h2">与<span class="mlr10">CaN</span>站内信</h2>
+    <dl class="send_site_email">
+    	<dt><img src="./我预订的服务_韩汀社区_files/100" alt="CaN" class="user_photo_site">
+				</dt>
+        <dd>
+			<input type="hidden" id="smsuid" value="257">
+        	<textarea class="input_c in_site_text" id="smsmsg"></textarea>
+            <div class="member_bt_btm2"><a href="javascript:void(0);" class="btna_acancel">取消</a><a href="javascript:void(0);" onclick="sendsms()">发送</a></div>
+        </dd>
+    </dl>
+</div>
+<!--站内信 弹框 end-->
+
+<!--我要发物流 弹框-->
+<div class="siteship_2 site_ship_pop" style="display:">
+	<a href="javascript:void(0);" class="close_pop_btn"></a>
+	<h2 class="site_h2">填写材料快递单号</h2>
+	<div class="kd_box"><span class="f14">快递公司</span><input type="text" name="shipcompany" id="shipcompany" class="input_c inf_inc3"></div>
+	<div class="kd_box"><span class="f14">快递单号</span><input type="text" rel="100587" name="hydh1" id="hydh1" class="input_c inf_inc3"></div>
+	<div class="my_hy_btn ship_btn">				
+		<a href="javascript:void(0);" class="btn_jy_a btn_jy_a4">取消</a>
+		<a href="javascript:void(0);" class="btn_jy_a btn_jy_a3">提交</a>
+	</div>
+
+</div>
+<!--我要发物流 弹框 end-->
+
+</body>
+<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+
+		var s = [[${ordervo.orderStatus}]];
+		if(s==1){
+			$(".cur:not(:eq(1)) .mbsp_sp span").css("background","#f1e6ee");
+		}else if(s==2){
+			$(".cur:not(:eq(1),:eq(2)) .mbsp_sp span").css("background","#f1e6ee");
+		}else if(s==3){
+			$(".cur:not(:eq(1),:eq(2),:eq(3),:eq(4)) .mbsp_sp span").css("background","#f1e6ee");
+		}else if(s==4){
+			$(".cur:not(:eq(1),:eq(2),:eq(3),:eq(4),:eq(5)) .mbsp_sp span").css("background","#f1e6ee");
+		}else if(s==5){
+			$(".cur:not(:eq(1),:eq(2),:eq(3),:eq(4),:eq(5),:eq(6)) .mbsp_sp span").css("background","#f1e6ee");
+		}else if(s==6){
+			$(".cur:not(:eq(1)) .mbsp_sp span").css("background","#f1e6ee");
+		}
+		
+		function quxiao(oid){
+			if(window.confirm("确定要取消服务吗？")){
+				$.ajax("/c/updateMyOrderState?state="+6+"&oid="+oid,{
+					type:"post",
+					contentType:"application/json",
+					dataType:"json",
+					success:function(json){
+						if(json.code==200){
+							alert("取消成功");
+							location.href="/c/getAllMyOrders?num=1&size=3";
+						}else{
+							alert("取消失败");
+						
+						}
+						
+					}
+				
+				
+				});
+				
+				
+				
+			}
+			
+		}
+		
+		function qrsh(oid){
+			if(window.confirm("您要确认收货吗？")){
+				$.ajax("/c/updateMyOrderState?state="+5+"&oid="+oid,{
+					type:"post",
+					contentType:"application/json",
+					dataType:"json",
+					success:function(json){
+						if(json.code==200){
+							alert("确认成功");
+							window.location.reload();
+						}else{
+							alert("确认失败");
+						
+						}
+						
+					}
+				});
+				
+			}
+			
+		}
+		
+
+</script>
+</html>
